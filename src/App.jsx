@@ -51,7 +51,7 @@ export default function App() {
           {/* Lead card */}
           <article className="lift panel col-span-12 md:col-span-7 overflow-hidden">
             <div className="ratio-21x9">
-              <img src="/img/fea-hero.jpg" alt="FEA Lead" className="img-cover" />
+              <img src="/img/project2.png" alt="FEA Lead" className="img-cover" />
             </div>
             <div className="p-6 md:p-8">
               <p className="eyebrow">Case Study</p>
@@ -69,7 +69,7 @@ export default function App() {
           {/* Two secondary cards */}
           <article className="lift panel col-span-12 md:col-span-5 overflow-hidden">
             <div className="ratio-21x9">
-              <img src="/img/buckling.jpg" alt="Buckling" className="img-cover" />
+              <img src="/img/project1.png" alt="Buckling" className="img-cover" />
             </div>
             <div className="p-6 md:p-7">
               <p className="eyebrow">Study</p>
@@ -80,7 +80,7 @@ export default function App() {
 
           <article className="lift panel col-span-12 md:col-span-5 overflow-hidden">
             <div className="ratio-21x9">
-              <img src="/img/truss.jpg" alt="Truss" className="img-cover" />
+              <img src="/img/project5.png" alt="Truss" className="img-cover" />
             </div>
             <div className="p-6 md:p-7">
               <p className="eyebrow">Optimization</p>
@@ -94,10 +94,10 @@ export default function App() {
 
         {/* Gallery row */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          <img src="/img/detail-1.jpg" className="rounded-xl lift" alt="detail 1" />
-          <img src="/img/detail-2.jpg" className="rounded-xl lift" alt="detail 2" />
-          <img src="/img/detail-3.jpg" className="rounded-xl lift" alt="detail 3" />
-          <img src="/img/detail-4.jpg" className="rounded-xl lift" alt="detail 4" />
+          <img src="/img/project1.png" className="rounded-xl lift" alt="detail 1" />
+          <img src="/img/project2.png" className="rounded-xl lift" alt="detail 2" />
+          <img src="/img/project3.png" className="rounded-xl lift" alt="detail 3" />
+          <img src="/img/project4.png" className="rounded-xl lift" alt="detail 4" />
         </div>
       </section>
 
