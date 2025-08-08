@@ -2,110 +2,61 @@
 @tailwind components;
 @tailwind utilities;
 
-/* === BACKGROUND ANGLES === */
-.angle-bg {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(140deg, rgba(17,24,39,0) 30%, rgba(56,189,248,0.12) 100%);
-  clip-path: polygon(0 0, 70% 0, 100% 25%, 100% 100%, 0 100%);
-  pointer-events: none;
-}
-.angle-1 {
-  opacity: 0.35;
-  transform: translateY(-6vh);
-}
-.angle-2 {
-  opacity: 0.18;
-  background: linear-gradient(160deg, rgba(56,189,248,0.18) 0%, rgba(14,165,233,0.10) 60%, rgba(17,24,39,0) 100%);
-  clip-path: polygon(0 15%, 80% 0, 100% 0, 100% 85%, 25% 100%, 0 100%);
+/* ===== GLOBAL BACKGROUND ===== */
+body {
+  background-color: #0f172a; /* slate-900 */
+  background-image: radial-gradient(circle at center, rgba(56,189,248,0.08) 1px, transparent 1px);
+  background-size: 44px 44px; /* blueprint grid */
+  color: #f8fafc; /* text-slate-50 */
 }
 
-/* === GLOW BORDER EFFECT === */
-.glow-border {
-  position: relative;
-}
-.glow-border::before {
-  content: "";
-  position: absolute;
-  inset: -1px;
-  z-index: -1;
-  border-radius: 12px;
-  background: linear-gradient(120deg, rgba(56,189,248,0.6), rgba(14,165,233,0.6));
-  filter: blur(6px);
-  opacity: 0.35;
+/* ===== CARDS & GLASS EFFECT ===== */
+.bg-slate-800\/40 {
+  background-color: rgba(30, 41, 59, 0.4) !important;
+  backdrop-filter: blur(8px);
 }
 
-/* === TAG CHIP === */
-.tag-chip {
-  display: inline-block;
-  font-size: 0.75rem;
-  padding: 0.35rem 0.55rem;
-  border: 1px solid rgba(56,189,248,0.45);
-  border-radius: 8px;
-  color: #a8eaff;
-  background: rgba(2,6,23,0.45);
-  backdrop-filter: blur(4px);
-}
-.tag-chip.alt {
-  border-color: rgba(56,189,248,0.6);
-  color: #a8eaff;
-}
-
-/* === BUTTONS === */
-.btn-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.6rem 0.9rem;
-  border-radius: 0.6rem;
-  color: #fff;
-  background: #06b6d4; /* cyan-500 */
-  border: 1px solid rgba(56,189,248,0.6);
-  transition: filter 0.15s ease, transform 0.15s ease;
-}
-.btn-cta:hover {
-  filter: brightness(1.06);
-  transform: translateY(-1px);
-}
-
-.btn-ghost {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.55rem 0.85rem;
-  border-radius: 0.6rem;
-  border: 1px solid rgba(148,163,184,0.35);
-  color: #e5e7eb;
-  background: rgba(2,6,23,0.4);
-  transition: background 0.15s ease, transform 0.15s ease;
-}
-.btn-ghost:hover {
-  background: rgba(255,255,255,0.06);
-  transform: translateY(-1px);
-}
-
-/* === SECTION TITLE === */
+/* ===== SECTION TITLES ===== */
 section h2 {
   position: relative;
 }
 section h2::after {
   content: "";
   position: absolute;
-  bottom: -4px;
+  bottom: -6px;
   left: 0;
-  height: 2px;
-  width: 40px;
+  height: 3px;
+  width: 50px;
   background-color: #22d3ee; /* cyan-400 */
+  border-radius: 2px;
 }
 
-/* === BLUEPRINT GRID BACKGROUND (applies to the body or wrapper) === */
-body {
-  background-color: #0f172a; /* slate-950 */
-  background-image: radial-gradient(circle at center, rgba(56,189,248,0.12) 1px, transparent 1px);
-  background-size: 44px 44px;
+/* ===== BUTTONS ===== */
+button,
+.btn {
+  transition: all 0.2s ease;
+}
+button:hover,
+.btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.08);
 }
 
-/* === IMAGE HOVER ZOOM === */
+/* ===== BADGES ===== */
+.badge-outline {
+  border: 1px solid rgba(56,189,248,0.5) !important;
+  color: #38bdf8 !important;
+  background: rgba(15, 23, 42, 0.5);
+}
+
+/* ===== PROJECT CARD HOVER ===== */
+.project-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(56,189,248,0.25);
+}
 .project-card img {
   transition: transform 0.3s ease;
 }
@@ -113,11 +64,32 @@ body {
   transform: scale(1.05);
 }
 
-/* === RESPONSIVE FIXES === */
+/* ===== NAV LINKS ===== */
+nav a {
+  transition: background 0.2s ease, color 0.2s ease;
+}
+nav a:hover {
+  background-color: rgba(30, 41, 59, 0.6);
+  color: #38bdf8;
+}
+
+/* ===== ANIMATED BACKGROUND MOVEMENT ===== */
+@keyframes movebg {
+  0% {
+    background-position: 0px 0px;
+  }
+  100% {
+    background-position: 40px 40px;
+  }
+}
+
+/* ===== RESPONSIVE TWEAKS ===== */
 @media (max-width: 640px) {
-  .btn-cta,
-  .btn-ghost {
-    width: 100%;
-    justify-content: center;
+  nav {
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+  nav a {
+    padding: 0.4rem 0.6rem;
   }
 }
