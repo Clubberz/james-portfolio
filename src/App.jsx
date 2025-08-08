@@ -41,20 +41,19 @@ export default function App() {
   const [sending] = useState(false)
 
   return (
-    <div className="relative min-h-screen bg-slate-900 text-slate-100 overflow-hidden">
+    <div className="relative min-h-screen bg-gradient-to-b from-slate-900 to-blue-900 text-white overflow-hidden">
 
-      {/* -------- BACKGROUND LAYER -------- */}
+      {/* -------- BACKGROUND GRID -------- */}
       <div className="absolute inset-0 -z-10">
-        {/* Blueprint grid */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.06)_1px,transparent_1px)] bg-[length:40px_40px] animate-[movebg_20s_linear_infinite]" />
-
-        {/* Airfoil shape */}
-        <motion.svg className="absolute top-24 left-12 w-72 h-72 opacity-10" initial={{ y: -50 }} animate={{ y: 0 }} transition={{ duration: 10, repeat: Infinity, repeatType: 'reverse' }} viewBox="0 0 200 200" fill="none" stroke="white" strokeWidth="0.5">
+        {/* Glowing cyan blueprint grid */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(56,189,248,0.15)_1px,transparent_1px)] bg-[length:40px_40px]" />
+        {/* Large aerospace silhouettes */}
+        <motion.svg className="absolute top-10 left-10 w-96 h-96 opacity-30 text-sky-400" fill="none" stroke="currentColor" strokeWidth="1"
+          initial={{ y: -30 }} animate={{ y: 30 }} transition={{ duration: 15, repeat: Infinity, repeatType: 'reverse' }} viewBox="0 0 200 200">
           <path d="M 10 100 Q 140 10 190 100 Q 140 190 10 100 Z" />
         </motion.svg>
-
-        {/* Turbine outline */}
-        <motion.svg className="absolute bottom-32 right-16 w-64 h-64 opacity-10" initial={{ rotate: 0 }} animate={{ rotate: 360 }} transition={{ duration: 60, repeat: Infinity, ease: 'linear' }} viewBox="0 0 200 200" fill="none" stroke="white" strokeWidth="0.5">
+        <motion.svg className="absolute bottom-20 right-10 w-80 h-80 opacity-40 text-red-500" fill="none" stroke="currentColor" strokeWidth="1"
+          initial={{ rotate: 0 }} animate={{ rotate: 360 }} transition={{ duration: 40, repeat: Infinity, ease: 'linear' }} viewBox="0 0 200 200">
           <circle cx="100" cy="100" r="90" />
           <line x1="100" y1="10" x2="100" y2="190" />
           <line x1="10" y1="100" x2="190" y2="100" />
@@ -62,7 +61,7 @@ export default function App() {
       </div>
 
       {/* -------- NAV -------- */}
-      <header className="sticky top-0 z-40 backdrop-blur bg-slate-900/50 border-b border-slate-700">
+      <header className="sticky top-0 z-40 backdrop-blur bg-slate-900/50 border-b border-sky-400">
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
           <div className="font-semibold tracking-tight">{NAME}</div>
           <nav className="flex items-center gap-2">
@@ -70,7 +69,7 @@ export default function App() {
             <a href="#skills" className="px-3 py-1 rounded-xl hover:bg-slate-800">Skills</a>
             <a href="#experience" className="px-3 py-1 rounded-xl hover:bg-slate-800">Experience</a>
             <a href="#contact" className="px-3 py-1 rounded-xl hover:bg-slate-800">Contact</a>
-            <Button asChild variant="secondary" className="rounded-xl bg-sky-600 hover:bg-sky-500 text-white">
+            <Button asChild variant="secondary" className="rounded-xl bg-red-600 hover:bg-red-500 text-white">
               <a href={RESUME_URL} target="_blank" rel="noreferrer">
                 <FileDown className="w-4 h-4 mr-2" />Resume
               </a>
@@ -81,11 +80,11 @@ export default function App() {
 
       {/* -------- HERO -------- */}
       <section className="max-w-6xl mx-auto px-4 pt-14 pb-8">
-        <div className="bg-slate-800/40 p-8 rounded-2xl backdrop-blur border border-slate-700">
-          <h1 className="text-4xl md:text-5xl font-bold">{NAME}</h1>
-          <div className="mt-2 text-lg text-slate-300">{TAGLINE}</div>
-          <div className="mt-1 flex items-center gap-2 text-slate-400"><MapPin className="w-4 h-4" />{LOCATION}</div>
-          <p className="mt-4 text-slate-300">{SUMMARY}</p>
+        <div className="bg-slate-900/50 p-8 rounded-2xl backdrop-blur border border-sky-400 shadow-lg shadow-sky-500/20">
+          <h1 className="text-4xl md:text-5xl font-bold text-sky-400">{NAME}</h1>
+          <div className="mt-2 text-lg text-red-400">{TAGLINE}</div>
+          <div className="mt-1 flex items-center gap-2 text-slate-300"><MapPin className="w-4 h-4" />{LOCATION}</div>
+          <p className="mt-4 text-slate-200">{SUMMARY}</p>
           <div className="mt-6 flex flex-wrap gap-3">
             {LINKS.map(({ label, href, Icon }) => (
               <Button key={label} asChild variant="outline" className="rounded-xl border-slate-600 text-slate-200 hover:bg-slate-700">
@@ -100,14 +99,14 @@ export default function App() {
 
       {/* -------- PROJECTS -------- */}
       <section id="projects" className="max-w-6xl mx-auto px-4 py-12">
-        <h2 className="text-3xl font-bold mb-6">Projects</h2>
+        <h2 className="text-3xl font-bold mb-6 text-red-500 border-b-2 border-sky-400 inline-block pb-1">Projects</h2>
         <div className="grid md:grid-cols-3 gap-6">
           {PROJECTS.map((p, i) => (
-            <motion.div key={i} whileHover={{ scale: 1.03 }} className="bg-slate-800/40 p-6 rounded-2xl border border-slate-700 backdrop-blur">
-              <h3 className="text-xl font-semibold">{p.title}</h3>
-              <p className="text-slate-300 mt-2">{p.blurb}</p>
+            <motion.div key={i} whileHover={{ scale: 1.03 }} className="bg-slate-900/50 p-6 rounded-2xl border border-sky-400 backdrop-blur shadow-lg shadow-red-500/20">
+              <h3 className="text-xl font-semibold text-sky-400">{p.title}</h3>
+              <p className="text-slate-200 mt-2">{p.blurb}</p>
               <div className="mt-3 flex flex-wrap gap-2">
-                {p.tags.map((t, j) => <Badge key={j} variant="outline" className="border-sky-500 text-sky-400">{t}</Badge>)}
+                {p.tags.map((t, j) => <Badge key={j} variant="outline" className="border-red-500 text-red-400">{t}</Badge>)}
               </div>
             </motion.div>
           ))}
@@ -116,14 +115,14 @@ export default function App() {
 
       {/* -------- SKILLS -------- */}
       <section id="skills" className="max-w-6xl mx-auto px-4 py-12">
-        <h2 className="text-3xl font-bold mb-6">Skills</h2>
+        <h2 className="text-3xl font-bold mb-6 text-red-500 border-b-2 border-sky-400 inline-block pb-1">Skills</h2>
         <div className="grid md:grid-cols-3 gap-6">
           {SKILLS.map((s, i) => (
-            <div key={i} className="bg-slate-800/40 p-6 rounded-2xl border border-slate-700 backdrop-blur">
-              <h3 className="font-semibold mb-4">{s.group}</h3>
+            <div key={i} className="bg-slate-900/50 p-6 rounded-2xl border border-sky-400 backdrop-blur shadow-lg shadow-sky-500/20">
+              <h3 className="font-semibold mb-4 text-sky-400">{s.group}</h3>
               <div className="flex flex-wrap gap-2">
                 {s.items.map((item, j) => (
-                  <Badge key={j} variant="outline" className="border-sky-500 text-sky-400">{item}</Badge>
+                  <Badge key={j} variant="outline" className="border-red-500 text-red-400">{item}</Badge>
                 ))}
               </div>
             </div>
@@ -133,13 +132,13 @@ export default function App() {
 
       {/* -------- EXPERIENCE -------- */}
       <section id="experience" className="max-w-6xl mx-auto px-4 py-12">
-        <h2 className="text-3xl font-bold mb-6">Experience</h2>
+        <h2 className="text-3xl font-bold mb-6 text-red-500 border-b-2 border-sky-400 inline-block pb-1">Experience</h2>
         <div className="space-y-6">
           {EXPERIENCE.map((exp, i) => (
-            <div key={i} className="bg-slate-800/40 p-6 rounded-2xl border border-slate-700 backdrop-blur">
-              <h3 className="text-xl font-semibold">{exp.role} – {exp.org}</h3>
+            <div key={i} className="bg-slate-900/50 p-6 rounded-2xl border border-sky-400 backdrop-blur shadow-lg shadow-red-500/20">
+              <h3 className="text-xl font-semibold text-sky-400">{exp.role} – {exp.org}</h3>
               <div className="text-slate-400 text-sm">{exp.dates}</div>
-              <ul className="list-disc list-inside mt-2 text-slate-300">
+              <ul className="list-disc list-inside mt-2 text-slate-200">
                 {exp.bullets.map((b, j) => <li key={j}>{b}</li>)}
               </ul>
             </div>
@@ -149,14 +148,14 @@ export default function App() {
 
       {/* -------- CONTACT -------- */}
       <section id="contact" className="max-w-6xl mx-auto px-4 py-12">
-        <h2 className="text-3xl font-bold mb-6">Contact</h2>
-        <div className="bg-slate-800/40 p-8 rounded-2xl border border-slate-700 backdrop-blur text-center">
-          <p className="text-slate-300 mb-4">I’m always open to discussing engineering projects or opportunities.</p>
+        <h2 className="text-3xl font-bold mb-6 text-red-500 border-b-2 border-sky-400 inline-block pb-1">Contact</h2>
+        <div className="bg-slate-900/50 p-8 rounded-2xl border border-sky-400 backdrop-blur text-center shadow-lg shadow-sky-500/20">
+          <p className="text-slate-200 mb-4">I’m always open to discussing engineering projects or opportunities.</p>
           <div className="flex justify-center gap-4">
-            <Button asChild variant="outline">
+            <Button asChild variant="outline" className="border-red-500 text-red-400 hover:bg-red-500 hover:text-white">
               <a href="mailto:you@example.com"><Mail className="w-4 h-4 mr-2" /> Email Me</a>
             </Button>
-            <Button asChild variant="outline">
+            <Button asChild variant="outline" className="border-red-500 text-red-400 hover:bg-red-500 hover:text-white">
               <a href="https://www.linkedin.com/in/YOUR-LINKEDIN"><Linkedin className="w-4 h-4 mr-2" /> LinkedIn</a>
             </Button>
           </div>
