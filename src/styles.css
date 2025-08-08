@@ -2,4 +2,62 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body, #root { height: 100%; }
+/* Angular background planes */
+.angle-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(140deg, rgba(17,24,39,0) 30%, rgba(56,189,248,0.12) 100%);
+  clip-path: polygon(0 0, 70% 0, 100% 25%, 100% 100%, 0 100%);
+  pointer-events: none;
+}
+.angle-1 { opacity: .35; transform: translateY(-6vh); }
+.angle-2 {
+  opacity: .18;
+  background: linear-gradient(160deg, rgba(56,189,248,.18) 0%, rgba(14,165,233,.10) 60%, rgba(17,24,39,0) 100%);
+  clip-path: polygon(0 15%, 80% 0, 100% 0, 100% 85%, 25% 100%, 0 100%);
+}
+
+/* Glow border */
+.glow-border { position: relative; }
+.glow-border::before{
+  content:""; position:absolute; inset:-1px; z-index:-1; border-radius:12px;
+  background: linear-gradient(120deg, rgba(56,189,248,.6), rgba(14,165,233,.6));
+  filter: blur(6px); opacity:.35;
+}
+
+/* Chips / tags */
+.tag-chip{
+  font-size:.75rem; padding:.35rem .55rem; border-radius:8px;
+  border:1px solid rgba(56,189,248,.45); color:#a8eaff;
+  background: rgba(2,6,23,.45); backdrop-filter: blur(4px);
+}
+.tag-chip.alt{ border-color: rgba(56,189,248,.6); }
+
+/* CTA + ghost buttons */
+.btn-cta{
+  display:inline-flex; align-items:center; gap:.5rem;
+  padding:.6rem .9rem; border-radius:.6rem; color:#fff;
+  background:#06b6d4; border:1px solid rgba(56,189,248,.6);
+  transition: filter .15s ease, transform .15s ease;
+}
+.btn-cta:hover{ filter:brightness(1.06); transform: translateY(-1px); }
+.btn-ghost{
+  display:inline-flex; align-items:center; gap:.5rem;
+  padding:.55rem .85rem; border-radius:.6rem;
+  border:1px solid rgba(148,163,184,.35); color:#e5e7eb;
+  background: rgba(2,6,23,.4);
+  transition: background .15s ease, transform .15s ease;
+}
+.btn-ghost:hover{ background: rgba(255,255,255,.06); transform: translateY(-1px); }
+
+/* Project hover */
+.project-card { transition: transform .25s ease, box-shadow .25s ease; }
+.project-card:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(56,189,248,.25);
+}
+
+/* Optional: blueprint grid on body (already layered in App) */
+body{
+  background-color:#0f172a;
+}
