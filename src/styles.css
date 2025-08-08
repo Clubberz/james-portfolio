@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* background */
+.bg-hero {
+  background-image: url('/background.jpg'); /* root-relative from public folder */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 /* Angular background planes */
 .angle-bg {
   position: absolute;
