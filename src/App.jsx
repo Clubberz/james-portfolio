@@ -84,15 +84,6 @@ const PROJECTS = [
 
 const EXPERIENCE = [
   {
-    org: 'Mamaka Bowls',
-    role: 'Barista / Shift Lead',
-    dates: '2024–2025',
-    bullets: [
-      'Streamlined closing checklist to reduce shutdown time by ~15%',
-      'Handled high-volume rushes; trained two new hires',
-    ],
-  },
-  {
     org: 'Rice University',
     role: 'Mechanical Engineering – Junior',
     dates: '2023–Present',
