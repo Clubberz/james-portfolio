@@ -49,15 +49,6 @@ const SKILLS = [
 
 const EXPERIENCE = [
   {
-    org: "Mamaka Bowls",
-    role: "Barista / Shift Lead",
-    dates: "2024–2025",
-    bullets: [
-      "Reduced shutdown time by ~15% with a re-engineered closing process",
-      "Trained two hires; maintained throughput under rush conditions",
-    ],
-  },
-  {
     org: "Rice University",
     role: "Mechanical Engineering — Junior",
     dates: "2023–Present",
