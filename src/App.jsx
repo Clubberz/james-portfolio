@@ -1,252 +1,189 @@
-import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, MapPin, FileDown } from "lucide-react";
+import { Github, Linkedin, Mail, ArrowUpRight } from "lucide-react";
 
-// ===== PLACEHOLDERS (edit anytime) =====
-const NAME = "James Clubley";
-const TAGLINE = "Mechanical Engineering @ Rice — FEA · CAD · Prototyping";
-const LOCATION = "Houston, TX";
-const SUMMARY =
-  "Simulation-driven mechanical engineer specializing in structural FEA, CAD design, and rapid prototyping. Skilled in ANSYS, SolidWorks, MATLAB, and Python. Interests in aerospace, motorsport, and marine engineering.";
-
-const PROJECTS = [
-  {
-    src: "/img/project1.png",
-    title: "Eigenvalue Buckling Analysis",
-    desc: "Calculated critical load factors and mode shapes for a structural frame under axial compression.",
-    tags: ["FEA", "ANSYS", "Buckling"],
-  },
-  {
-    src: "/img/project2.png",
-    title: "Bracket von Mises Stress",
-    desc: "Static structural analysis to identify peak stresses and validate safety factors.",
-    tags: ["FEA", "Stress Analysis"],
-  },
-  {
-    src: "/img/project3.png",
-    title: "Lightweight Truss Optimization",
-    desc: "Beam-based topology optimization for weight reduction while maintaining stiffness.",
-    tags: ["Optimization", "Structural"],
-  },
-  {
-    src: "/img/project4.png",
-    title: "Clevis Link Fatigue Study",
-    desc: "Evaluated fatigue life under cyclic loading conditions with alternating stress ranges.",
-    tags: ["Fatigue", "FEA"],
-  },
-  {
-    src: "/img/project5.png",
-    title: "BMW K100 Systems Refresh",
-    desc: "Mechanical overhaul including hydraulic brakes, suspension, and drivetrain inspection.",
-    tags: ["Mechanics", "Hydraulics"],
-  },
-];
-
-const SKILLS = [
-  ["ANSYS Workbench", "Modal/Buckling Analysis", "Mesh Convergence"],
-  ["SolidWorks", "DFM/DFA", "3D Printing & Composites"],
-  ["Python", "MATLAB", "Git", "LaTeX"],
-];
-
-const EXPERIENCE = [
-  {
-    org: "Rice University",
-    role: "Mechanical Engineering — Junior",
-    dates: "2023–Present",
-    bullets: [
-      "Mechanics of Materials, Thermo/Fluids, CAD/CAE (ANSYS)",
-      "Rocketry Club, EV Club",
-    ],
-  },
-];
-
-const LINKS = [
-  { label: "GitHub", href: "https://github.com/Clubberz", icon: Github },
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/YOUR-LINKEDIN", icon: Linkedin },
-  { label: "Email", href: "mailto:you@example.com", icon: Mail },
-];
-
-const RESUME_URL = "/resume.pdf";
-
+/**  Porsche-like feel: stark layouts, big imagery, calm spacing, crisp type  **/
 export default function App() {
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 relative overflow-x-hidden">
-      {/* Background (blueprint grid + angled planes) */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(56,189,248,.12)_1px,transparent_1px)] bg-[length:44px_44px] opacity-50" />
-        <div className="angle-bg angle-1" />
-        <div className="angle-bg angle-2" />
-      </div>
+    <div>
 
-      {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-cyan-400/40 backdrop-blur bg-slate-950/70">
-        <div className="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-          <div className="font-bold tracking-tight">{NAME}</div>
-          <nav className="flex gap-4 text-sm">
-            {["Projects", "Skills", "Experience", "Contact"].map((s) => (
-              <a key={s} href={`#${s.toLowerCase()}`} className="hover:text-cyan-400 transition">
-                {s}
-              </a>
-            ))}
-            <a
-              href={RESUME_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="px-3 py-1 rounded bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-medium transition"
-            >
-              <FileDown className="w-4 h-4 inline mr-1" /> Resume
-            </a>
-          </nav>
+      {/* ---- NAV ---- */}
+      <nav className="border-b border-white/10">
+        <div className="container h-[68px] flex items-center justify-between">
+          <a href="/" className="text-[13px] tracking-[0.28em] uppercase text-neutral-300 hover:text-white transition">
+            JAMES CLUBLEY
+          </a>
+          <div className="hidden md:flex items-center gap-6">
+            <a href="#work" className="nav-link">Work</a>
+            <a href="#capabilities" className="nav-link">Capabilities</a>
+            <a href="#about" className="nav-link">About</a>
+            <a href="#contact" className="nav-link">Contact</a>
+          </div>
+        </div>
+      </nav>
+
+      {/* ---- HERO ---- */}
+      <header className="border-b border-white/10">
+        <div className="container py-12 md:py-16">
+          <p className="eyebrow">Mechanical Engineering Portfolio</p>
+          <h1 className="h1 mt-2">
+            Engineering that blends <span className="text-neutral-400">precision</span> and <span className="text-neutral-400">performance</span>.
+          </h1>
+          <p className="max-w-[720px] text-neutral-300 mt-5">
+            Simulation-driven design, fast iteration, and validated results. Focus on structural FEA,
+            CAD for manufacturability, and rigorous documentation.
+          </p>
+
+          <div className="flex items-center gap-3 mt-8">
+            <a className="btn primary" href="mailto:you@example.com">Start a conversation</a>
+            <a className="btn" href="#work">See the work</a>
+          </div>
+        </div>
+
+        {/* hero image strip */}
+        <div className="ratio-21x9">
+          {/* Put a wide hero image at public/hero.jpg */}
+          <img src="/hero.jpg" alt="Hero" className="img-cover" />
         </div>
       </header>
 
-      {/* Hero */}
-      <section className="max-w-6xl mx-auto px-4 pt-14 pb-10">
-        <div className="relative overflow-hidden rounded-2xl border border-cyan-400/40 bg-slate-900/60 backdrop-blur p-8 md:p-12 shadow-xl glow-border">
-          <motion.h1
-            initial={{ y: 10, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            className="text-4xl md:text-6xl font-extrabold tracking-tight"
-          >
-            Engineering with precision.
-          </motion.h1>
-          <div className="mt-3 text-lg md:text-xl text-cyan-400">{TAGLINE}</div>
-          <div className="mt-2 flex items-center gap-2 text-slate-400">
-            <MapPin className="w-4 h-4" /> {LOCATION}
-          </div>
-          <p className="mt-5 max-w-3xl text-slate-200">{SUMMARY}</p>
-          <div className="mt-6 flex flex-wrap gap-3">
-            {LINKS.map(({ label, href, icon: Icon }) => (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-md border border-slate-600 hover:bg-white/5 transition"
-              >
-                <Icon className="w-4 h-4" /> {label}
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Projects */}
-      <section id="projects" className="max-w-6xl mx-auto px-4 py-10">
-        <SectionTitle>Projects</SectionTitle>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {PROJECTS.map((p) => (
-            <motion.div
-              key={p.title}
-              whileHover={{ y: -4 }}
-              className="group project-card overflow-hidden rounded-xl border border-cyan-400/30 bg-slate-900/60 backdrop-blur hover:border-cyan-400/60 transition glow-border"
-            >
-              <div className="aspect-[16/10] overflow-hidden">
-                <img
-                  src={p.src}
-                  alt={p.title}
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-              </div>
-              <div className="p-4">
-                <h3 className="font-semibold text-slate-100">{p.title}</h3>
-                <p className="text-sm text-slate-400 mt-1">{p.desc}</p>
-                <div className="mt-2 flex flex-wrap gap-2">
-                  {p.tags.map((t) => (
-                    <span key={t} className="tag-chip">{t}</span>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* Skills */}
-      <section id="skills" className="max-w-6xl mx-auto px-4 py-10">
-        <SectionTitle>Skills</SectionTitle>
-        <div className="grid gap-6 md:grid-cols-3">
-          {SKILLS.map((col, idx) => (
-            <div
-              key={idx}
-              className="rounded-xl border border-cyan-400/30 bg-slate-900/60 backdrop-blur p-5 glow-border"
-            >
-              <div className="flex flex-wrap gap-2">
-                {col.map((s) => (
-                  <span key={s} className="tag-chip alt">{s}</span>
-                ))}
+      {/* ---- FEATURE STRIP ---- */}
+      <section className="container section" id="work">
+        <div className="grid-12">
+          {/* Lead card */}
+          <article className="lift panel col-span-12 md:col-span-7 overflow-hidden">
+            <div className="ratio-21x9">
+              <img src="/img/fea-hero.jpg" alt="FEA Lead" className="img-cover" />
+            </div>
+            <div className="p-6 md:p-8">
+              <p className="eyebrow">Case Study</p>
+              <h2 className="h2 mt-1">Bracket — Stress Validation</h2>
+              <p className="text-neutral-300 mt-3">
+                Von Mises stress map, mesh convergence, and safety factor verification against hand calcs.
+              </p>
+              <div className="flex items-center gap-2 mt-5">
+                <a className="link" href="#">View case <ArrowUpRight size={16} className="inline ml-1" /></a>
+                <span className="chip dot">FEA</span>
               </div>
             </div>
-          ))}
+          </article>
+
+          {/* Two secondary cards */}
+          <article className="lift panel col-span-12 md:col-span-5 overflow-hidden">
+            <div className="ratio-21x9">
+              <img src="/img/buckling.jpg" alt="Buckling" className="img-cover" />
+            </div>
+            <div className="p-6 md:p-7">
+              <p className="eyebrow">Study</p>
+              <h3 className="text-xl font-semibold tracking-[-0.01em]">Eigenvalue Buckling Modes</h3>
+              <p className="text-neutral-300 mt-2">Critical loads and mode shapes for a frame under axial compression.</p>
+            </div>
+          </article>
+
+          <article className="lift panel col-span-12 md:col-span-5 overflow-hidden">
+            <div className="ratio-21x9">
+              <img src="/img/truss.jpg" alt="Truss" className="img-cover" />
+            </div>
+            <div className="p-6 md:p-7">
+              <p className="eyebrow">Optimization</p>
+              <h3 className="text-xl font-semibold tracking-[-0.01em]">Lightweight Truss</h3>
+              <p className="text-neutral-300 mt-2">Topology and section sizing to reduce mass while maintaining stiffness.</p>
+            </div>
+          </article>
+        </div>
+
+        <div className="hr my-10"></div>
+
+        {/* Gallery row */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <img src="/img/detail-1.jpg" className="rounded-xl lift" alt="detail 1" />
+          <img src="/img/detail-2.jpg" className="rounded-xl lift" alt="detail 2" />
+          <img src="/img/detail-3.jpg" className="rounded-xl lift" alt="detail 3" />
+          <img src="/img/detail-4.jpg" className="rounded-xl lift" alt="detail 4" />
         </div>
       </section>
 
-      {/* Experience */}
-      <section id="experience" className="max-w-6xl mx-auto px-4 py-10">
-        <SectionTitle>Experience</SectionTitle>
-        <div className="relative pl-6">
-          <div className="absolute left-2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-cyan-400/60 to-cyan-600/60" />
-          <div className="space-y-6">
-            {EXPERIENCE.map((e) => (
-              <div key={e.org} className="relative ml-2">
-                <div className="absolute -left-[11px] mt-1 h-3 w-3 rotate-45 bg-cyan-500 shadow-[0_0_0_3px] shadow-slate-950" />
-                <div className="rounded-xl border border-cyan-400/30 bg-slate-900/60 backdrop-blur p-5 glow-border">
-                  <div className="flex items-center justify-between">
-                    <h3 className="font-semibold text-slate-100">
-                      {e.role} — {e.org}
-                    </h3>
-                    <span className="text-xs text-slate-400">{e.dates}</span>
-                  </div>
-                  <ul className="mt-2 list-disc pl-5 text-sm text-slate-300 space-y-1">
-                    {e.bullets.map((b) => (
-                      <li key={b}>{b}</li>
-                    ))}
-                  </ul>
-                </div>
+      {/* ---- CAPABILITIES ---- */}
+      <section className="border-t border-white/10 bg-black/20" id="capabilities">
+        <div className="container section">
+          <p className="eyebrow">Capabilities</p>
+          <h2 className="h2 mt-2">From concept to validated prototype.</h2>
+
+          <div className="grid md:grid-cols-3 gap-6 mt-8">
+            <Capability
+              title="Structural FEA"
+              items={["Linear static", "Modal / buckling", "Mesh studies", "SF verification"]}
+            />
+            <Capability
+              title="CAD & DFM"
+              items={["SolidWorks", "Tolerance/fit", "BOMs", "Drawings"]}
+            />
+            <Capability
+              title="Prototyping"
+              items={["3D printing", "Composites", "Fixture design", "Test plans"]}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* ---- ABOUT ---- */}
+      <section className="container section" id="about">
+        <div className="grid md:grid-cols-2 gap-10 items-center">
+          <div>
+            <p className="eyebrow">About</p>
+            <h2 className="h2 mt-2">Methodical. Fast. Documented.</h2>
+            <p className="text-neutral-300 mt-4">
+              Placeholder bio. Focus on crisp communication, pragmatic trade-offs, and engineering
+              decisions that stand up to scrutiny.
+            </p>
+          </div>
+          <div className="panel overflow-hidden lift">
+            <div className="ratio-21x9">
+              <img src="/portrait.jpg" className="img-cover" alt="Portrait" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ---- CONTACT ---- */}
+      <footer className="border-t border-white/10" id="contact">
+        <div className="container section">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div>
+              <p className="eyebrow">Contact</p>
+              <h2 className="h2 mt-2">Let’s build something ambitious.</h2>
+              <p className="text-neutral-300 mt-3">Email for roles, collaborations, or questions.</p>
+              <div className="flex gap-3 mt-6">
+                <a className="btn primary" href="mailto:you@example.com">Email</a>
+                <a className="btn" target="_blank" rel="noreferrer" href="https://github.com/Clubberz">
+                  <Github size={18} className="mr-2" /> GitHub
+                </a>
+                <a className="btn" target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/YOUR-LINKEDIN">
+                  <Linkedin size={18} className="mr-2" /> LinkedIn
+                </a>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Contact */}
-      <section id="contact" className="max-w-6xl mx-auto px-4 pb-14">
-        <div className="rounded-2xl border border-cyan-400/40 bg-slate-900/60 backdrop-blur p-8 md:p-10 glow-border">
-          <h2 className="text-2xl md:text-3xl font-bold">Let’s work on your next big project.</h2>
-          <p className="mt-2 text-slate-300 max-w-2xl">
-            Available for internships, part-time, and contract roles. I move from concept → analysis → validated prototype fast.
-          </p>
-          <div className="mt-5 flex flex-wrap gap-3">
-            <a className="btn-cta" href="mailto:you@example.com">
-              <Mail className="w-4 h-4" /> Email
-            </a>
-            <a className="btn-ghost" href="https://github.com/Clubberz" target="_blank" rel="noreferrer">
-              <Github className="w-4 h-4" /> GitHub
-            </a>
-            <a className="btn-ghost" href="https://www.linkedin.com/in/YOUR-LINKEDIN" target="_blank" rel="noreferrer">
-              <Linkedin className="w-4 h-4" /> LinkedIn
+            </div>
+            <a className="text-sm text-neutral-400 hover:text-white transition flex items-center gap-1" href="#">
+              Download résumé <ArrowUpRight size={16} />
             </a>
           </div>
-        </div>
-      </section>
 
-      {/* Footer */}
-      <footer className="border-t border-cyan-400/20">
-        <div className="max-w-6xl mx-auto px-4 py-6 text-sm text-slate-400 flex justify-between">
-          <span>© {new Date().getFullYear()} {NAME}</span>
-          <span>Built with React + Tailwind</span>
+          <div className="hr my-8"></div>
+          <div className="text-xs text-neutral-500 flex items-center justify-between">
+            <span>© {new Date().getFullYear()} James Clubley</span>
+            <a className="hover:text-neutral-300 transition" href="#top">Back to top</a>
+          </div>
         </div>
       </footer>
     </div>
   );
 }
 
-function SectionTitle({ children }) {
+function Capability({ title, items }) {
   return (
-    <div className="mb-5">
-      <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-cyan-400">
-        {children}
-      </h2>
+    <div className="panel p-6">
+      <h3 className="text-lg font-semibold tracking-[-0.01em]">{title}</h3>
+      <ul className="mt-3 space-y-1 text-neutral-300">
+        {items.map((it) => <li key={it}>• {it}</li>)}
+      </ul>
     </div>
   );
 }
