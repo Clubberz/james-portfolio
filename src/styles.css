@@ -2,64 +2,122 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body, #root { height: 100%; }
-/* ---- Angular theme helpers ---- */
+/* === BACKGROUND ANGLES === */
 .angle-bg {
-  position: absolute; inset: 0;
-  background: linear-gradient(140deg, rgba(17,24,39,.0) 30%, rgba(56,189,248,.12) 100%);
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(140deg, rgba(17,24,39,0) 30%, rgba(56,189,248,0.12) 100%);
   clip-path: polygon(0 0, 70% 0, 100% 25%, 100% 100%, 0 100%);
+  pointer-events: none;
 }
-.angle-1 { opacity:.35; transform: translateY(-6vh); }
+.angle-1 {
+  opacity: 0.35;
+  transform: translateY(-6vh);
+}
 .angle-2 {
-  opacity:.18;
-  background: linear-gradient(160deg, rgba(225,29,72,.18) 0%, rgba(14,165,233,.10) 60%, rgba(17,24,39,0) 100%);
+  opacity: 0.18;
+  background: linear-gradient(160deg, rgba(56,189,248,0.18) 0%, rgba(14,165,233,0.10) 60%, rgba(17,24,39,0) 100%);
   clip-path: polygon(0 15%, 80% 0, 100% 0, 100% 85%, 25% 100%, 0 100%);
 }
 
-/* diagonal cut in hero container */
-.clip-hero { clip-path: polygon(0 0, 100% 0, 100% 92%, 85% 100%, 0 100%); }
-
-/* neon gradient border */
+/* === GLOW BORDER EFFECT === */
 .glow-border {
   position: relative;
 }
 .glow-border::before {
-  content:""; position:absolute; inset:-1px; z-index:-1; border-radius:12px;
-  background: linear-gradient(120deg, rgba(56,189,248,.6), rgba(225,29,72,.6));
-  filter: blur(6px); opacity:.35;
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  border-radius: 12px;
+  background: linear-gradient(120deg, rgba(56,189,248,0.6), rgba(14,165,233,0.6));
+  filter: blur(6px);
+  opacity: 0.35;
 }
 
-/* chips */
+/* === TAG CHIP === */
 .tag-chip {
-  font-size:.75rem;
-  padding:.35rem .55rem;
-  border:1px solid rgba(56,189,248,.45);
-  border-radius:8px;
-  color:#a8eaff;
-  background: rgba(2,6,23,.45);
+  display: inline-block;
+  font-size: 0.75rem;
+  padding: 0.35rem 0.55rem;
+  border: 1px solid rgba(56,189,248,0.45);
+  border-radius: 8px;
+  color: #a8eaff;
+  background: rgba(2,6,23,0.45);
   backdrop-filter: blur(4px);
 }
 .tag-chip.alt {
-  border-color: rgba(225,29,72,.6);
-  color: #fecaca;
+  border-color: rgba(56,189,248,0.6);
+  color: #a8eaff;
 }
 
-/* buttons */
-.btn-cta{
-  display:inline-flex; align-items:center; gap:.5rem;
-  padding:.6rem .9rem; border-radius:.6rem;
-  color:#fff; background:#dc2626; /* red-600 */
-  box-shadow: 0 10px 24px rgba(220,38,38,.25);
-  border:1px solid rgba(220,38,38,.6);
-  transition: filter .15s ease, transform .15s ease;
+/* === BUTTONS === */
+.btn-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.9rem;
+  border-radius: 0.6rem;
+  color: #fff;
+  background: #06b6d4; /* cyan-500 */
+  border: 1px solid rgba(56,189,248,0.6);
+  transition: filter 0.15s ease, transform 0.15s ease;
 }
-.btn-cta:hover{ filter:brightness(1.06); transform: translateY(-1px) }
+.btn-cta:hover {
+  filter: brightness(1.06);
+  transform: translateY(-1px);
+}
 
-.btn-ghost{
-  display:inline-flex; align-items:center; gap:.5rem;
-  padding:.55rem .85rem; border-radius:.6rem;
-  border:1px solid rgba(148,163,184,.35);
-  color:#e5e7eb; background: rgba(2,6,23,.4);
-  transition: background .15s ease, transform .15s ease;
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.85rem;
+  border-radius: 0.6rem;
+  border: 1px solid rgba(148,163,184,0.35);
+  color: #e5e7eb;
+  background: rgba(2,6,23,0.4);
+  transition: background 0.15s ease, transform 0.15s ease;
 }
-.btn-ghost:hover{ background: rgba(255,255,255,.06); transform: translateY(-1px) }
+.btn-ghost:hover {
+  background: rgba(255,255,255,0.06);
+  transform: translateY(-1px);
+}
+
+/* === SECTION TITLE === */
+section h2 {
+  position: relative;
+}
+section h2::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  height: 2px;
+  width: 40px;
+  background-color: #22d3ee; /* cyan-400 */
+}
+
+/* === BLUEPRINT GRID BACKGROUND (applies to the body or wrapper) === */
+body {
+  background-color: #0f172a; /* slate-950 */
+  background-image: radial-gradient(circle at center, rgba(56,189,248,0.12) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+/* === IMAGE HOVER ZOOM === */
+.project-card img {
+  transition: transform 0.3s ease;
+}
+.project-card:hover img {
+  transform: scale(1.05);
+}
+
+/* === RESPONSIVE FIXES === */
+@media (max-width: 640px) {
+  .btn-cta,
+  .btn-ghost {
+    width: 100%;
+    justify-content: center;
+  }
+}
