@@ -11,6 +11,13 @@ const SKILLS = [
 
 const PROJECTS = [
   {
+    img: "/img/k100frame.png",
+    title: "BMW K100 Build",
+    stack: "Solidworks • FEA • Fabrication",
+    view: "#",
+    code: "https://github.com/Clubberz",
+  },
+  {
     img: "/img/project1.png",
     title: "Bracket — Stress Validation",
     stack: "FEA • Static",
