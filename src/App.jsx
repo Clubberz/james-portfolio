@@ -133,37 +133,26 @@ export default function App() {
         <div className="hr mt-8"></div>
       </section>
 
-      {/* PROJECTS — heading left + grid below, Porsche-y cards */}
+      {/* PROJECTS */}
       <section id="projects" className="container section">
         <div className="flex items-end justify-between">
           <h2 className="h2">Projects</h2>
-          <a className="btn hidden md:inline" href="mailto:you@example.com">
-            Contact me
-          </a>
+          <a className="btn hidden md:inline" href="mailto:you@example.com">Contact me</a>
         </div>
 
         <div className="grid md:grid-cols-2 gap-6 mt-8">
           {PROJECTS.map((p) => (
-            <article key={p.title} className="panel overflow-hidden lift">
-              <div className="ratio-21x9">
+            <article key={p.title} className="card">
+              <div className="card-media ratio-16x9">
                 <img src={p.img} alt={p.title} className="img-cover" />
+                <div className="img-overlay" />
               </div>
-              <div className="p-5 md:p-6">
-                <h3 className="text-xl font-semibold tracking-[-0.01em]">{p.title}</h3>
-                <div className="text-sm text-neutral-400 mt-1">{p.stack}</div>
-
-                <div className="flex items-center gap-5 mt-4">
-                  <a className="link inline-flex items-center gap-1" href={p.view}>
-                    View project <ArrowUpRight size={16} />
-                  </a>
-                  <a
-                    className="link inline-flex items-center gap-1 text-neutral-400 hover:text-white"
-                    href={p.code}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    View code <ArrowUpRight size={16} />
-                  </a>
+              <div className="card-body">
+                <h3 className="card-title">{p.title}</h3>
+                <div className="card-meta">{p.stack}</div>
+                <div className="card-actions">
+                  <a className="link" href={p.view}>View project</a>
+                  <a className="link" href={p.code} target="_blank" rel="noreferrer">View code</a>
                 </div>
               </div>
             </article>
