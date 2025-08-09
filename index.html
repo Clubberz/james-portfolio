@@ -17,5 +17,13 @@
   <body class="antialiased">
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+
+  <script>
+  const r = sessionStorage.getItem('redirect');
+  if (r) {
+    sessionStorage.removeItem('redirect');
+    history.replaceState(null, '', r);
+  }
+  </script>
   </body>
 </html>

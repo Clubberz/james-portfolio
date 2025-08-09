@@ -1,4 +1,6 @@
 import { Github, Linkedin, Mail, ArrowUpRight } from "lucide-react";
+import { Link } from 'react-router-dom'
+import { PROJECTS } from './data/projects'
 
 const SKILLS = [
   { name: "FEA", meta: "ANSYS • Linear/Modal" },
@@ -148,21 +150,23 @@ export default function App() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-6 mt-8">
-          {PROJECTS.map((p) => (
-            <article key={p.title} className="card">
-              <div className="card-media ratio-16x9">
-                <img src={p.img} alt={p.title} className="img-cover" />
-                <div className="img-overlay" />
+        {PROJECTS.map((p) => (
+          <Link key={p.slug} to={`/projects/${p.slug}`} className="card block">
+            <div className="card-media ratio-16x9">
+              <img src={p.hero} alt={p.title} className="img-cover" />
+              <div className="img-overlay" />
+            </div>
+            <div className="card-body">
+              <h3 className="card-title">{p.title}</h3>
+              <div className="card-meta">{p.stack}</div>
+              <div className="card-actions">
+                <span className="link">View project</span>
+                <a className="link" href={p.links.code} onClick={e => e.stopPropagation()} target="_blank" rel="noreferrer">
+                  View code
+                </a>
               </div>
-              <div className="card-body">
-                <h3 className="card-title">{p.title}</h3>
-                <div className="card-meta">{p.stack}</div>
-                <div className="card-actions">
-                  <a className="link" href={p.view}>View project</a>
-                  <a className="link" href={p.code} target="_blank" rel="noreferrer">View code</a>
-                </div>
-              </div>
-            </article>
+            </div>
+          </Link>
           ))}
         </div>
       </section>
