@@ -1,3 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------- Brand System ---------- */
 :root {
   --mint: #9fffcb;
   --bg: #0a0a0a;
