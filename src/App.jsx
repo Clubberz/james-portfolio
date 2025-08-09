@@ -135,9 +135,9 @@ export default function App() {
 
       {/* PROJECTS */}
       <section id="projects" className="container section">
-        <div className="flex items-end justify-between">
-          <h2 className="h2">Projects</h2>
-          <a className="btn hidden md:inline" href="mailto:you@example.com">Contact me</a>
+        <div className="flex flex-col items-center md:flex-row md:items-end md:justify-between gap-3">
+         <h2 className="h2 text-center md:text-left">Projects</h2>
+          <a className="btn mx-auto md:mx-0" href="mailto:you@example.com">Contact me</a>
         </div>
 
         <div className="grid md:grid-cols-2 gap-6 mt-8">
