@@ -1,213 +1,210 @@
-import { BrowserRouter, Routes, Route, Link, useParams } from 'react-router-dom'
-import { Github, Linkedin, Mail, ArrowUpRight } from 'lucide-react'
+import { Github, Linkedin, Mail, ArrowUpRight } from "lucide-react";
 
-/** ---------------------------
- *  Project data (uses /public/img/*)
- *  --------------------------*/
-const PROJECTS = {
-  'bracket-stress-validation': {
-    title: 'Bracket — Stress Validation',
-    eyebrow: 'Case Study',
-    hero: '/img/project1.png',
-    summary:
-      'Von Mises stress map, mesh convergence, and safety factor verification against hand calculations.',
-    bullets: [
-      'Linear static analysis in ANSYS',
-      'Mesh independence study',
-      'σmax vs. hand calc correlation within 4%',
-      'Documented SF assumptions and constraints',
-    ],
-    // Use other images you have as a simple gallery
-    gallery: ['/img/project2.png', '/img/project3.png'],
-    tags: ['FEA', 'Stress', 'Validation'],
-  },
-  'eigenvalue-buckling': {
-    title: 'Eigenvalue Buckling Modes',
-    eyebrow: 'Study',
-    hero: '/img/project2.png',
-    summary:
-      'Mode shape extraction and critical load factors for a slender frame under axial compression.',
-    bullets: [
-      'Top 5 modes extracted',
-      'Boundary condition sensitivity',
-      'Critical load vs. slenderness ratio',
-    ],
-    gallery: ['/img/project4.png', '/img/project5.png'],
-    tags: ['FEA', 'Modal/Buckling'],
-  },
-  'lightweight-truss': {
-    title: 'Lightweight Truss',
-    eyebrow: 'Optimization',
-    hero: '/img/project3.png',
-    summary:
-      'Section sizing and topology tweaks to reduce mass while maintaining stiffness targets.',
-    bullets: [
-      '15% mass reduction @ same deflection',
-      'Constraint-driven sizing',
-      'Manufacturing-aware geometry',
-    ],
-    gallery: ['/img/project1.png', '/img/project2.png'],
-    tags: ['Optimization', 'Structures'],
-  },
-}
+const SKILLS = [
+  { name: "FEA", meta: "ANSYS • Linear/Modal" },
+  { name: "CAD", meta: "SolidWorks • DFM" },
+  { name: "Python", meta: "NumPy • Scripts" },
+  { name: "MATLAB", meta: "Analysis • Plots" },
+  { name: "Prototyping", meta: "3D print • Composites" },
+  { name: "Docs", meta: "BOM • Drawings" },
+];
 
-/** ---------------------------
- *  Root App with Router
- *  --------------------------*/
+const PROJECTS = [
+  {
+    img: "/img/project1.png",
+    title: "Bracket — Stress Validation",
+    stack: "FEA • Static",
+    view: "#",
+    code: "https://github.com/Clubberz",
+  },
+  {
+    img: "/img/project2.png",
+    title: "Eigenvalue Buckling Modes",
+    stack: "FEA • Buckling",
+    view: "#",
+    code: "https://github.com/Clubberz",
+  },
+  {
+    img: "/img/project3.png",
+    title: "Lightweight Truss Optimization",
+    stack: "Structures • Opt",
+    view: "#",
+    code: "https://github.com/Clubberz",
+  },
+  {
+    img: "/img/project4.png",
+    title: "Clevis Link Study",
+    stack: "Fatigue • SF",
+    view: "#",
+    code: "https://github.com/Clubberz",
+  },
+  {
+    img: "/img/project5.png",
+    title: "Assembly & Fixtures",
+    stack: "CAD • DFM",
+    view: "#",
+    code: "https://github.com/Clubberz",
+  },
+];
+
 export default function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/projects/:id" element={<ProjectDetail />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </BrowserRouter>
-  )
-}
-
-/** ---------------------------
- *  Home (Porsche-inspired)
- *  --------------------------*/
-function Home() {
-  return (
     <div>
+
       {/* NAV */}
-      <nav className="border-b border-white/10">
-        <div className="container h-[68px] flex items-center justify-between">
-          <a href="/" className="text-[13px] tracking-[0.28em] uppercase text-neutral-300 hover:text-white transition">
+      <nav className="border-b border-white/10 sticky top-0 z-40 bg-black/50 backdrop-blur">
+        <div className="container h-[64px] flex items-center justify-between">
+          <a
+            href="/"
+            className="text-[13px] tracking-[0.28em] uppercase text-neutral-300 hover:text-white transition"
+          >
             JAMES CLUBLEY
           </a>
-          <div className="hidden md:flex items-center gap-6">
-            <a href="#work" className="nav-link">Work</a>
-            <a href="#capabilities" className="nav-link">Capabilities</a>
-            <a href="#about" className="nav-link">About</a>
-            <a href="#contact" className="nav-link">Contact</a>
+          <div className="flex items-center gap-5">
+            <a className="nav-link hidden md:inline" href="#projects">Projects</a>
+            <a className="nav-link hidden md:inline" href="#skills">Skills</a>
+            <a className="nav-link hidden md:inline" href="#contact">Contact</a>
+            <a
+              className="nav-link"
+              href="https://github.com/Clubberz"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GitHub"
+            >
+              <Github size={18} />
+            </a>
+            <a
+              className="nav-link"
+              href="https://www.linkedin.com/in/YOUR-LINKEDIN"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="LinkedIn"
+            >
+              <Linkedin size={18} />
+            </a>
           </div>
         </div>
       </nav>
 
-      {/* HERO */}
+      {/* HERO — split like the reference: headline left, portrait right */}
       <header className="border-b border-white/10">
-        <div className="container py-12 md:py-16">
-          <p className="eyebrow">Mechanical Engineering Portfolio</p>
-          <h1 className="h1 mt-2">
-            Engineering that blends <span className="text-neutral-400">precision</span> and <span className="text-neutral-400">performance</span>.
-          </h1>
-          <p className="max-w-[720px] text-neutral-300 mt-5">
-            Simulation-driven design, fast iteration, and validated results. Focus on structural FEA,
-            CAD for manufacturability, and rigorous documentation.
-          </p>
-
-          <div className="flex items-center gap-3 mt-8">
-            <a className="btn primary" href="mailto:you@example.com">Start a conversation</a>
-            <a className="btn" href="#work">See the work</a>
-          </div>
-        </div>
-
-        {/* Wide hero image — now /img/hero.jpg */}
-        <div className="ratio-21x9">
-          <img src="/img/hero.jpg" alt="Hero" className="img-cover" />
-        </div>
-      </header>
-
-      {/* WORK STRIP */}
-      <section className="container section" id="work">
-        <div className="grid-12">
-          <WorkCard
-            to="/projects/bracket-stress-validation"
-            size="lead"
-            eyebrow="Case Study"
-            title="Bracket — Stress Validation"
-            img="/img/project1.png"
-            desc="Von Mises stress map, mesh convergence, and safety factor verification against hand calcs."
-            chip="FEA"
-          />
-          <WorkCard
-            to="/projects/eigenvalue-buckling"
-            eyebrow="Study"
-            title="Eigenvalue Buckling Modes"
-            img="/img/project2.png"
-            desc="Critical loads and mode shapes for a frame under axial compression."
-          />
-          <WorkCard
-            to="/projects/lightweight-truss"
-            eyebrow="Optimization"
-            title="Lightweight Truss"
-            img="/img/project3.png"
-            desc="Topology and section sizing to reduce mass while maintaining stiffness."
-          />
-        </div>
-
-        <div className="hr my-10"></div>
-
-        {/* Gallery row — use any remaining images */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          <img src="/img/project2.png" className="rounded-xl lift" alt="detail 1" />
-          <img src="/img/project4.png" className="rounded-xl lift" alt="detail 2" />
-          <img src="/img/project5.png" className="rounded-xl lift" alt="detail 3" />
-          <img src="/img/project1.png" className="rounded-xl lift" alt="detail 4" />
-        </div>
-      </section>
-
-      {/* CAPABILITIES */}
-      <section className="border-t border-white/10 bg-black/20" id="capabilities">
-        <div className="container section">
-          <p className="eyebrow">Capabilities</p>
-          <h2 className="h2 mt-2">From concept to validated prototype.</h2>
-
-          <div className="grid md:grid-cols-3 gap-6 mt-8">
-            <Capability title="Structural FEA" items={['Linear static','Modal / buckling','Mesh studies','SF verification']} />
-            <Capability title="CAD & DFM" items={['SolidWorks','Tolerance/fit','BOMs','Drawings']} />
-            <Capability title="Prototyping" items={['3D printing','Composites','Fixture design','Test plans']} />
-          </div>
-        </div>
-      </section>
-
-      {/* ABOUT */}
-      <section className="container section" id="about">
-        <div className="grid md:grid-cols-2 gap-10 items-center">
+        <div className="container py-12 md:py-16 grid md:grid-cols-2 gap-8 items-center">
           <div>
-            <p className="eyebrow">About</p>
-            <h2 className="h2 mt-2">Methodical. Fast. Documented.</h2>
-            <p className="text-neutral-300 mt-4">
-              Placeholder bio. Focus on crisp communication, pragmatic trade-offs, and engineering
-              decisions that stand up to scrutiny.
+            <p className="eyebrow">Mechanical Engineering Portfolio</p>
+            <h1 className="h1 mt-2">
+              Nice to meet you!
+              <br />
+              I’m <span className="text-neutral-200">James Clubley</span>.
+            </h1>
+            <p className="text-neutral-300 mt-5 max-w-[560px]">
+              Based in Houston, focused on structural FEA, CAD for manufacturability,
+              and rapid prototyping. I build clean, documented solutions and ship fast.
             </p>
+            <div className="flex gap-3 mt-8">
+              <a className="btn primary" href="mailto:you@example.com">
+                Contact me
+              </a>
+              <a className="btn" href="#projects">
+                See projects
+              </a>
+            </div>
           </div>
+
+          {/* Portrait panel */}
           <div className="panel overflow-hidden lift">
-            <div className="ratio-21x9">
-              {/* portrait now /img/portrait.jpg */}
-              <img src="/img/portrait.jpg" className="img-cover" alt="Portrait" />
+            <div className="ratio-21x9 md:ratio-21x9">
+              <img src="/img/portrait.jpg" alt="Portrait" className="img-cover" />
             </div>
           </div>
         </div>
+      </header>
+
+      {/* SKILLS STRIP — horizontal tiles with hairline divider, like the example */}
+      <section id="skills" className="container section">
+        <div className="hr mb-8"></div>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-y-8 gap-x-6">
+          {SKILLS.map((s) => (
+            <div key={s.name} className="pr-4">
+              <div className="text-xl font-semibold tracking-[-0.01em]">{s.name}</div>
+              <div className="text-sm text-neutral-400 mt-1">{s.meta}</div>
+            </div>
+          ))}
+        </div>
+        <div className="hr mt-8"></div>
       </section>
 
-      {/* CONTACT / FOOTER */}
-      <footer className="border-t border-white/10" id="contact">
+      {/* PROJECTS — heading left + grid below, Porsche-y cards */}
+      <section id="projects" className="container section">
+        <div className="flex items-end justify-between">
+          <h2 className="h2">Projects</h2>
+          <a className="btn hidden md:inline" href="mailto:you@example.com">
+            Contact me
+          </a>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6 mt-8">
+          {PROJECTS.map((p) => (
+            <article key={p.title} className="panel overflow-hidden lift">
+              <div className="ratio-21x9">
+                <img src={p.img} alt={p.title} className="img-cover" />
+              </div>
+              <div className="p-5 md:p-6">
+                <h3 className="text-xl font-semibold tracking-[-0.01em]">{p.title}</h3>
+                <div className="text-sm text-neutral-400 mt-1">{p.stack}</div>
+
+                <div className="flex items-center gap-5 mt-4">
+                  <a className="link inline-flex items-center gap-1" href={p.view}>
+                    View project <ArrowUpRight size={16} />
+                  </a>
+                  <a
+                    className="link inline-flex items-center gap-1 text-neutral-400 hover:text-white"
+                    href={p.code}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    View code <ArrowUpRight size={16} />
+                  </a>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {/* CONTACT FOOTER */}
+      <footer id="contact" className="border-t border-white/10">
         <div className="container section">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
               <p className="eyebrow">Contact</p>
               <h2 className="h2 mt-2">Let’s build something ambitious.</h2>
-              <p className="text-neutral-300 mt-3">Email for roles, collaborations, or questions.</p>
+              <p className="text-neutral-300 mt-3">
+                Email for roles, collaborations, or questions. I’ll reply quickly.
+              </p>
               <div className="flex gap-3 mt-6">
-                <a className="btn primary" href="mailto:you@example.com">Email</a>
-                <a className="btn" target="_blank" rel="noreferrer" href="https://github.com/Clubberz">
+                <a className="btn primary" href="mailto:you@example.com">
+                  Email
+                </a>
+                <a className="btn" href="https://github.com/Clubberz" target="_blank" rel="noreferrer">
                   <Github size={18} className="mr-2" /> GitHub
                 </a>
-                <a className="btn" target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/YOUR-LINKEDIN">
+                <a className="btn" href="https://www.linkedin.com/in/YOUR-LINKEDIN" target="_blank" rel="noreferrer">
                   <Linkedin size={18} className="mr-2" /> LinkedIn
                 </a>
               </div>
             </div>
-            <a className="text-sm text-neutral-400 hover:text-white transition flex items-center gap-1" href="#">
-              Download résumé <ArrowUpRight size={16} />
-            </a>
+
+            <div className="panel p-6">
+              <h3 className="text-lg font-semibold">Availability</h3>
+              <ul className="text-neutral-300 mt-3 space-y-1">
+                <li>• Internships / part-time</li>
+                <li>• Contract FEA & CAD work</li>
+                <li>• Rapid prototypes & documentation</li>
+              </ul>
+            </div>
           </div>
 
-          <div className="hr my-8"></div>
+          <div className="hr my-8" />
           <div className="text-xs text-neutral-500 flex items-center justify-between">
             <span>© {new Date().getFullYear()} James Clubley</span>
             <a className="hover:text-neutral-300 transition" href="#top">Back to top</a>
@@ -215,101 +212,5 @@ function Home() {
         </div>
       </footer>
     </div>
-  )
-}
-
-/** Components */
-function WorkCard({ to, size, eyebrow, title, img, desc, chip }) {
-  const sizeClasses =
-    size === 'lead'
-      ? 'col-span-12 md:col-span-7'
-      : 'col-span-12 md:col-span-5'
-
-  return (
-    <Link to={to} className={`lift panel ${sizeClasses} overflow-hidden block`}>
-      <div className="ratio-21x9">
-        <img src={img} alt={title} className="img-cover" />
-      </div>
-      <div className="p-6 md:p-8">
-        {eyebrow && <p className="eyebrow">{eyebrow}</p>}
-        <h3 className="h2 mt-1">{title}</h3>
-        {desc && <p className="text-neutral-300 mt-3">{desc}</p>}
-        <div className="flex items-center gap-2 mt-5">
-          <span className="link">View case <ArrowUpRight size={16} className="inline ml-1" /></span>
-          {chip && <span className="chip dot">{chip}</span>}
-        </div>
-      </div>
-    </Link>
-  )
-}
-
-function Capability({ title, items }) {
-  return (
-    <div className="panel p-6">
-      <h3 className="text-lg font-semibold tracking-[-0.01em]">{title}</h3>
-      <ul className="mt-3 space-y-1 text-neutral-300">
-        {items.map((it) => <li key={it}>• {it}</li>)}
-      </ul>
-    </div>
-  )
-}
-
-/** Detail Page */
-function ProjectDetail() {
-  const { id } = useParams()
-  const project = PROJECTS[id]
-
-  if (!project) {
-    return (
-      <div className="container py-20">
-        <Link to="/" className="text-neutral-400 hover:text-white">&larr; Back</Link>
-        <h1 className="h1 mt-4">Project not found</h1>
-      </div>
-    )
-  }
-
-  return (
-    <div>
-      <div className="ratio-21x9">
-        <img src={project.hero} alt={project.title} className="img-cover" />
-      </div>
-
-      <div className="container py-12">
-        <Link to="/" className="text-neutral-400 hover:text-white">&larr; Back</Link>
-        <p className="eyebrow mt-6">{project.eyebrow}</p>
-        <h1 className="h1 mt-2">{project.title}</h1>
-        <p className="text-neutral-300 mt-5 max-w-[820px]">{project.summary}</p>
-
-        <ul className="list-disc list-inside mt-6 text-neutral-300 space-y-1">
-          {project.bullets.map((b) => <li key={b}>{b}</li>)}
-        </ul>
-
-        <div className="flex gap-2 mt-6">
-          {project.tags?.map((t) => (
-            <span key={t} className="chip">{t}</span>
-          ))}
-        </div>
-
-        {project.gallery?.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-10">
-            {project.gallery.map((src) => (
-              <img key={src} src={src} alt="detail" className="rounded-xl lift" />
-            ))}
-          </div>
-        )}
-      </div>
-    </div>
-  )
-}
-
-/** 404 */
-function NotFound() {
-  return (
-    <div className="container py-24">
-      <h1 className="h1">Not found</h1>
-      <p className="text-neutral-300 mt-3">
-        The page you’re looking for doesn’t exist. <Link to="/" className="link">Go home</Link>.
-      </p>
-    </div>
-  )
+  );
 }
