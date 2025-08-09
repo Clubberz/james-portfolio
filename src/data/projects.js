@@ -1,4 +1,20 @@
 export const PROJECTS = [
+    {
+    slug: 'BMW K100 Build',
+    title: 'BMW K100 Build',
+    stack: 'FEA • CAD • Fabrication',
+    hero: '/img/k100frame.png',
+    summary:
+      'Redesigned and fabricated a custom frame and subframe for a BMW K100 motorcycle conversion, including FEA validation and fabrication considerations.',
+    bullets: [
+      'Tube frame design in SolidWorks',
+      'Force and stress analysis using FEA',
+      'welded jig and fixture design',
+      'suspension review and geometry optimization',
+    ],
+    gallery: ['/img/K100_frame_assembly.png', '/img/K100dixer.jpg'],
+    links: { view: '#', code: 'https://github.com/Clubberz' },
+  },
   {
     slug: 'bracket-stress-validation',
     title: 'Bracket — Stress Validation',
