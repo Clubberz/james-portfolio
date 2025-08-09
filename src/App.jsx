@@ -11,51 +11,6 @@ const SKILLS = [
   { name: "Docs", meta: "BOM • Drawings" },
 ];
 
-const PROJECTS = [
-  {
-    img: "/img/k100frame.png",
-    title: "BMW K100 Build",
-    stack: "Solidworks • FEA • Fabrication",
-    view: "#",
-    code: "https://github.com/Clubberz",
-  },
-  {
-    img: "/img/project1.png",
-    title: "Bracket — Stress Validation",
-    stack: "FEA • Static",
-    view: "#",
-    code: "https://github.com/Clubberz",
-  },
-  {
-    img: "/img/project2.png",
-    title: "Eigenvalue Buckling Modes",
-    stack: "FEA • Buckling",
-    view: "#",
-    code: "https://github.com/Clubberz",
-  },
-  {
-    img: "/img/project3.png",
-    title: "Lightweight Truss Optimization",
-    stack: "Structures • Opt",
-    view: "#",
-    code: "https://github.com/Clubberz",
-  },
-  {
-    img: "/img/project4.png",
-    title: "Clevis Link Study",
-    stack: "Fatigue • SF",
-    view: "#",
-    code: "https://github.com/Clubberz",
-  },
-  {
-    img: "/img/project5.png",
-    title: "Assembly & Fixtures",
-    stack: "CAD • DFM",
-    view: "#",
-    code: "https://github.com/Clubberz",
-  },
-];
-
 export default function App() {
   return (
     <div>
