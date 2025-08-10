@@ -56,9 +56,9 @@ export default function App() {
           <div>
             <p className="eyebrow">Mechanical Engineering Portfolio</p>
             <h1 className="h1 mt-2">
-              Nice to meet you!
+              Keith is
               <br />
-              I’m <span className="text-neutral-200">James</span>.
+              I’m <span className="text-neutral-200">gay</span>.
             </h1>
             <p className="text-neutral-300 mt-5 max-w-[560px]">
               Based in Houston, focused on structural FEA, CAD for manufacturability,
