@@ -58,7 +58,7 @@ export default function App() {
             <h1 className="h1 mt-2">
               Keith is
               <br />
-              I’m <span className="text-neutral-200">gay</span>.
+               <span className="text-neutral-200">gay</span>.
             </h1>
             <p className="text-neutral-300 mt-5 max-w-[560px]">
               Based in Houston, focused on structural FEA, CAD for manufacturability,
