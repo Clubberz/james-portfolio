@@ -62,7 +62,7 @@ export default function App() {
             </h1>
             <p className="text-neutral-300 mt-5 max-w-[560px]">
               Based in Houston, focused on structural FEA, CAD for manufacturability,
-              and rapid prototyping. I build clean, documented solutions and ship fast.
+              and rapid prototyping.
             </p>
             <div className="flex gap-3 mt-8">
               <a className="btn primary" href="mailto:you@example.com">
