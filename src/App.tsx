@@ -35,7 +35,7 @@ export default function App() {
            </div>
 
            <ImageSequence 
-             frameCount={120} 
+             frameCount={17} 
              basePath="/render/Frame" 
              extension="png" 
            />
