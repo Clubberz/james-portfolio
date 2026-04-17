@@ -47,15 +47,26 @@ export const ImageSequence: React.FC<ImageSequenceProps> = ({
 
     for (let i = 1; i <= frameCount; i++) {
       const img = new Image();
-      // Pad index with zeros (e.g. 000001, 000002...)
       const paddedIndex = String(i).padStart(6, '0');
-      img.src = `${basePath}${paddedIndex}.${extension}`;
-      img.onload = () => {
+      
+      const handleLoad = () => {
         loadedCount++;
         if (loadedCount === frameCount) {
           setIsLoading(false);
         }
       };
+
+      const handleError = () => {
+        console.error(`Failed to load frame: ${basePath}${paddedIndex}.${extension}`);
+        loadedCount++; // Still increment to prevent hanging the whole UI
+        if (loadedCount === frameCount) {
+          setIsLoading(false);
+        }
+      };
+
+      img.onload = handleLoad;
+      img.onerror = handleError;
+      img.src = `${basePath}${paddedIndex}.${extension}`;
       loadedImages.push(img);
     }
     setImages(loadedImages);
@@ -109,9 +120,21 @@ export const ImageSequence: React.FC<ImageSequenceProps> = ({
       <div className="sticky top-0 left-0 w-full h-screen overflow-hidden flex items-center justify-center bg-black">
         {isLoading && (
           <div className="absolute inset-0 z-50 flex items-center justify-center bg-black text-white font-mono text-[10px] tracking-widest uppercase">
-            Initializing Hardware... {Math.round((images.filter(i => i.complete).length / frameCount) * 100)}%
+            Initializing Hardware... {Math.round((images.filter(i => i.complete && i.naturalWidth > 0).length / frameCount) * 100)}%
           </div>
         )}
+        
+        {/* Error State / Helper for missing files */}
+        {!isLoading && images.every(img => img.naturalWidth === 0) && (
+          <div className="absolute inset-0 z-40 flex flex-col items-center justify-center bg-zinc-900 p-8 text-center">
+            <div className="text-white font-black text-2xl tracking-tighter mb-4 opacity-80">ASSET_NOT_FOUND</div>
+            <p className="text-zinc-500 font-mono text-[11px] max-w-sm leading-relaxed uppercase tracking-widest">
+              Please ensure your 120 frames are uploaded to: <br/>
+              <span className="text-zinc-300">/public/render/frame_000001.png</span> ... <span className="text-zinc-300">frame_000120.png</span>
+            </p>
+          </div>
+        )}
+
         <canvas 
           ref={canvasRef} 
           className="w-full h-full object-cover"
