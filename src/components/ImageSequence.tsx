@@ -31,6 +31,7 @@ export const ImageSequence: React.FC<ImageSequenceProps> = ({
   useEffect(() => {
     let active = true;
     
+    // 2. Load Images in Batches
     const preLoadImages = async () => {
       // 1. Detect Padding
       const detectPadding = async () => {
@@ -40,7 +41,7 @@ export const ImageSequence: React.FC<ImageSequenceProps> = ({
             const img = new Image();
             img.onload = () => resolve(true);
             img.onerror = () => resolve(false);
-            img.src = `${basePath}${String(1).padStart(p, '0')}.${extension}`;
+            img.src = `${basePath}${String(1).padStart(p, '0')}.${extension}?t=${Date.now()}`;
           });
           if (success) return p;
         }
@@ -68,7 +69,7 @@ export const ImageSequence: React.FC<ImageSequenceProps> = ({
             const img = new Image();
             img.onload = () => resolve({ img, index, success: true });
             img.onerror = () => resolve({ img, index, success: false });
-            img.src = `${basePath}${index.toString().padStart(padding, '0')}.${extension}`;
+            img.src = `${basePath}${index.toString().padStart(padding, '0')}.${extension}?t=${Date.now()}`;
           }));
         }
 
@@ -164,9 +165,17 @@ export const ImageSequence: React.FC<ImageSequenceProps> = ({
     window.addEventListener('resize', handleResize);
     const unsubscribe = currentIndex.on('change', render);
     
-    // Initial call
-    if (!isLoading) {
-      handleResize();
+    // Initial call: Use requestAnimationFrame to ensure DOM and Canvas context are ready
+    if (!isLoading && images.length > 0) {
+      const rafId = requestAnimationFrame(() => {
+        handleResize();
+        render();
+      });
+      return () => {
+        window.removeEventListener('resize', handleResize);
+        unsubscribe();
+        cancelAnimationFrame(rafId);
+      };
     }
 
     return () => {
@@ -181,7 +190,7 @@ export const ImageSequence: React.FC<ImageSequenceProps> = ({
         
         <canvas 
           ref={canvasRef} 
-          className="relative z-10 w-full h-full object-contain"
+          className="relative z-10 w-full h-full"
           style={{ filter: 'contrast(1.1) brightness(1.1)' }}
         />
 
