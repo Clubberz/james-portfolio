@@ -162,7 +162,7 @@ export const ImageSequence: React.FC<ImageSequenceProps> = ({
 
         {/* Loading / Diagnostic Overlay */}
         {isLoading && (
-          <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-[#050505]">
+          <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-[#171717]">
              <div className="w-64 h-1 border border-white/10 bg-black overflow-hidden mb-4">
                 <motion.div 
                   className="h-full bg-white"

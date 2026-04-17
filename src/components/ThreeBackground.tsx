@@ -68,9 +68,9 @@ function WireframeNode() {
 
 export function ThreeBackground() {
   return (
-    <div className="fixed inset-0 -z-10 bg-[#050505]">
+    <div className="fixed inset-0 -z-10 bg-[#171717]">
       <Canvas camera={{ position: [0, 0, 8], fov: 45 }}>
-        <fog attach="fog" args={['#050505', 8, 20]} />
+        <fog attach="fog" args={['#171717', 8, 20]} />
         <ambientLight intensity={0.5} />
         
         <Grid
@@ -100,7 +100,7 @@ export function ThreeBackground() {
           </Text>
         </Float>
       </Canvas>
-      <div className="absolute inset-0 bg-radial-gradient from-transparent to-[#050505] opacity-60" />
+      <div className="absolute inset-0 bg-radial-gradient from-transparent to-[#171717] opacity-60" />
     </div>
   );
 }
