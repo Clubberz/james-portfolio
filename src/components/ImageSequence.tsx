@@ -76,46 +76,63 @@ export const ImageSequence: React.FC<ImageSequenceProps> = ({
     preLoadImages();
   }, [frameCount, basePath, extension]);
 
+  // Handle Rendering and Resize (Unified)
   useEffect(() => {
+    const handleResize = () => {
+      if (canvasRef.current && containerRef.current) {
+        const dpr = window.devicePixelRatio || 1;
+        const width = containerRef.current.clientWidth;
+        const height = containerRef.current.clientHeight;
+        
+        canvasRef.current.width = width * dpr;
+        canvasRef.current.height = height * dpr;
+        
+        const context = canvasRef.current.getContext('2d');
+        if (context) {
+          context.scale(dpr, dpr);
+        }
+        render();
+      }
+    };
+
     const render = () => {
       const canvas = canvasRef.current;
-      const context = canvas?.getContext('2d');
-      if (!canvas || !context) return;
+      if (!canvas) return;
+      const context = canvas.getContext('2d');
+      if (!context) return;
+
+      const dpr = window.devicePixelRatio || 1;
+      const displayWidth = canvas.width / dpr;
+      const displayHeight = canvas.height / dpr;
 
       const index = Math.round(currentIndex.get());
       const img = images[index];
 
       if (img && img.naturalWidth > 0) {
-        // Clear and draw
-        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.clearRect(0, 0, displayWidth, displayHeight);
         
-        // Responsive scaling
-        const scale = Math.min(canvas.width / img.width, canvas.height / img.height);
-        const x = (canvas.width / 2) - (img.width / 2) * scale;
-        const y = (canvas.height / 2) - (img.height / 2) * scale;
+        // "Contain" scaling: fits image within canvas while maintaining aspect ratio
+        const scale = Math.min(displayWidth / img.naturalWidth, displayHeight / img.naturalHeight);
+        const w = img.naturalWidth * scale;
+        const h = img.naturalHeight * scale;
+        const x = (displayWidth - w) / 2;
+        const y = (displayHeight - h) / 2;
         
-        context.drawImage(img, x, y, img.width * scale, img.height * scale);
+        context.drawImage(img, x, y, w, h);
       }
     };
 
-    const unsubscribe = currentIndex.on('change', render);
-    if (!isLoading) render();
-
-    return () => unsubscribe();
-  }, [images, currentIndex, isLoading]);
-
-  // Handle Resize
-  useEffect(() => {
-    const handleResize = () => {
-      if (canvasRef.current && containerRef.current) {
-        canvasRef.current.width = containerRef.current.clientWidth;
-        canvasRef.current.height = containerRef.current.clientHeight;
-      }
-    };
     window.addEventListener('resize', handleResize);
+    const unsubscribe = currentIndex.on('change', render);
+    
+    // Initial call
     handleResize();
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      unsubscribe();
+    };
+  }, [images, currentIndex, isLoading]);
 
   return (
     <div ref={containerRef} className="relative h-[300vh] w-full bg-transparent">
