@@ -41,7 +41,8 @@ export const ImageSequence: React.FC<ImageSequenceProps> = ({
             const img = new Image();
             img.onload = () => resolve(true);
             img.onerror = () => resolve(false);
-            img.src = `${basePath}${String(1).padStart(p, '0')}.${extension}?t=${Date.now()}`;
+            const msg = `${basePath}${String(1).padStart(p, '0')}.${extension}`;
+            img.src = msg;
           });
           if (success) return p;
         }
@@ -69,7 +70,7 @@ export const ImageSequence: React.FC<ImageSequenceProps> = ({
             const img = new Image();
             img.onload = () => resolve({ img, index, success: true });
             img.onerror = () => resolve({ img, index, success: false });
-            img.src = `${basePath}${index.toString().padStart(padding, '0')}.${extension}?t=${Date.now()}`;
+            img.src = `${basePath}${index.toString().padStart(padding, '0')}.${extension}`;
           }));
         }
 
@@ -165,17 +166,10 @@ export const ImageSequence: React.FC<ImageSequenceProps> = ({
     window.addEventListener('resize', handleResize);
     const unsubscribe = currentIndex.on('change', render);
     
-    // Initial call: Use requestAnimationFrame to ensure DOM and Canvas context are ready
+    // Initial call: Ensure the first frame is painted
     if (!isLoading && images.length > 0) {
-      const rafId = requestAnimationFrame(() => {
-        handleResize();
-        render();
-      });
-      return () => {
-        window.removeEventListener('resize', handleResize);
-        unsubscribe();
-        cancelAnimationFrame(rafId);
-      };
+       handleResize();
+       render();
     }
 
     return () => {
