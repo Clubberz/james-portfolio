@@ -27,15 +27,14 @@ export default function App() {
            <div className="container-tight pt-12 pb-6 flex justify-between items-end border-b border-white/5">
               <div>
                 <span className="mono-label mb-2 text-brand-secondary">SHOWCASE_01</span>
-                <h2 className="text-3xl font-black tracking-tighter text-white uppercase italic">Interactive_Prototype</h2>
+                <h2 className="text-3xl font-black tracking-tighter text-white uppercase italic">BMW_K100_RESTOMOD</h2>
               </div>
               <div className="text-right hidden md:block">
-                 <p className="font-mono text-[9px] text-white/20 uppercase tracking-widest">SOLIDWORKS_RENDER // 120_FRAME_SEQUENCE</p>
+                 <p className="font-mono text-[9px] text-white/20 uppercase tracking-widest">SOLIDWORKS_RENDER // 18_FRAME_SEQUENCE</p>
               </div>
            </div>
 
            <ImageSequence 
-             frameCount={17} 
              basePath="/render/Frame" 
              extension="png" 
            />

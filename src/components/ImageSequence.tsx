@@ -2,19 +2,20 @@ import React, { useEffect, useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 
 interface ImageSequenceProps {
-  frameCount: number;
+  frameCount?: number; // Now optional
   basePath: string;
   extension?: string;
 }
 
 export const ImageSequence: React.FC<ImageSequenceProps> = ({ 
-  frameCount, 
+  frameCount: initialFrameCount, 
   basePath, 
   extension = 'png' 
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [images, setImages] = useState<HTMLImageElement[]>([]);
+  const [frameCount, setFrameCount] = useState<number>(initialFrameCount || 0);
   const [isLoading, setIsLoading] = useState(true);
   const [loadProgress, setLoadProgress] = useState(0);
   const [errorStatus, setErrorStatus] = useState<string | null>(null);
@@ -24,15 +25,15 @@ export const ImageSequence: React.FC<ImageSequenceProps> = ({
     offset: ["start start", "end end"]
   });
 
-  const currentIndex = useTransform(scrollYProgress, [0, 1], [0, frameCount - 1]);
+  // Use state for frame count to allow dynamic updates
+  const currentIndex = useTransform(scrollYProgress, [0, 1], [0, Math.max(0, frameCount - 1)]);
 
   useEffect(() => {
-    let loadedCount = 0;
-    const loadedImages: HTMLImageElement[] = [];
-
+    let active = true;
+    
     const preLoadImages = async () => {
-      // Test first image to determine padding
-      const testImage = async () => {
+      // 1. Detect Padding
+      const detectPadding = async () => {
         const paddings = [6, 4, 3, 2, 1];
         for (const p of paddings) {
           const success = await new Promise<boolean>((resolve) => {
@@ -43,44 +44,76 @@ export const ImageSequence: React.FC<ImageSequenceProps> = ({
           });
           if (success) return p;
         }
-        return 6; // Default
+        return 6;
       };
 
-      const detectedPadding = await testImage();
+      const padding = await detectPadding();
+      const loadedImages: HTMLImageElement[] = [];
+      let currentBatchStart = 1;
+      const batchSize = 24; // Load in parallel chunks for speed
+      let foundEnd = false;
 
-      for (let i = 1; i <= frameCount; i++) {
-        const img = new Image();
-        const paddedIndex = i.toString().padStart(detectedPadding, '0');
-        const src = `${basePath}${paddedIndex}.${extension}`;
-        img.src = src;
+      while (!foundEnd && active) {
+        const batchPromises: Promise<{img: HTMLImageElement, index: number, success: boolean}>[] = [];
         
-        img.onload = () => {
-          loadedCount++;
-          setLoadProgress(Math.floor((loadedCount / frameCount) * 100));
-          // If the first image finishes loading, draw it immediately
-          if (i === 1) {
-            setImages([...loadedImages]); 
+        for (let i = 0; i < batchSize; i++) {
+          const index = currentBatchStart + i;
+          // Optimization: If initialFrameCount is provided, don't overshoot significantly
+          if (initialFrameCount && index > initialFrameCount) {
+             foundEnd = true;
+             break;
           }
-          if (loadedCount === frameCount) {
-            setIsLoading(false);
-          }
-        };
 
-        img.onerror = () => {
-          loadedCount++;
-          if (i === 1) {
-             setErrorStatus(`Failed to load: ${src}. Verify filename/path.`);
-          }
-          if (loadedCount === frameCount) setIsLoading(false);
-        };
+          batchPromises.push(new Promise((resolve) => {
+            const img = new Image();
+            img.onload = () => resolve({ img, index, success: true });
+            img.onerror = () => resolve({ img, index, success: false });
+            img.src = `${basePath}${index.toString().padStart(padding, '0')}.${extension}`;
+          }));
+        }
 
-        loadedImages.push(img);
+        const results = await Promise.all(batchPromises);
+        
+        // Find the first failure
+        const failedIndex = results.findIndex(r => !r.success);
+        
+        if (failedIndex !== -1) {
+          // End of sequence found
+          for (let i = 0; i < failedIndex; i++) {
+            loadedImages.push(results[i].img);
+          }
+          foundEnd = true;
+        } else {
+          // Entire batch succeeded
+          results.forEach(r => loadedImages.push(r.img));
+          currentBatchStart += batchSize;
+          
+          // Update partial state so user sees something while loading
+          if (loadedImages.length > 0) {
+            setImages([...loadedImages]);
+            setFrameCount(loadedImages.length);
+          }
+        }
+
+        // Safety cap
+        if (currentBatchStart > 500) break; 
       }
-      setImages(loadedImages);
+
+      if (active) {
+        setImages(loadedImages);
+        setFrameCount(loadedImages.length);
+        setIsLoading(false);
+        setLoadProgress(100);
+        
+        if (loadedImages.length === 0) {
+          setErrorStatus("No images found in /public/render/. Please check filenames.");
+        }
+      }
     };
 
     preLoadImages();
-  }, [frameCount, basePath, extension]);
+    return () => { active = false; };
+  }, [basePath, extension, initialFrameCount]);
 
   // Handle Rendering and Resize (Unified)
   useEffect(() => {
