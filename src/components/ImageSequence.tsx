@@ -143,17 +143,9 @@ export const ImageSequence: React.FC<ImageSequenceProps> = ({
   }, [images, currentIndex, isLoading]);
 
   return (
-    <div ref={containerRef} className="relative h-[300vh] w-full bg-transparent">
+    <div ref={containerRef} className="relative h-[180vh] w-full bg-transparent">
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         
-        {/* Hardware Frame / Border */}
-        <div className="absolute inset-10 border border-white/5 pointer-events-none z-0">
-          <div className="absolute top-0 left-0 w-8 h-8 border-t border-l border-white/20" />
-          <div className="absolute top-0 right-0 w-8 h-8 border-t border-r border-white/20" />
-          <div className="absolute bottom-0 left-0 w-8 h-8 border-b border-l border-white/20" />
-          <div className="absolute bottom-0 right-0 w-8 h-8 border-b border-r border-white/20" />
-        </div>
-
         <canvas 
           ref={canvasRef} 
           className="relative z-10 w-full h-full object-contain"
