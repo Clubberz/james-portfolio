@@ -1,34 +1,20 @@
-# James Clubley – Engineering Portfolio
+<div align="center">
+<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+</div>
 
-A lightweight React + Vite + Tailwind site ready for GitHub Pages.
+# Run and deploy your AI Studio app
 
-## Local dev
-1. Install Node.js 20+
-2. Install deps: `npm install`
-3. Run dev server: `npm run dev`
+This contains everything you need to run your app locally.
 
-## Configure for GitHub Pages
-- Rename the repo to whatever you like, e.g. `jamesclubley-portfolio`.
-- In `vite.config.js`, set:
-  ```js
-  base: '/REPO_NAME/'
-  ```
-  Replace `REPO_NAME` with your repo name.
-- Commit and push to `main`.
+View your app in AI Studio: https://ai.studio/apps/a9deeef4-c4f3-42bc-8679-4f556f94a599
 
-## Deploy (GitHub Actions)
-- This repo includes `.github/workflows/deploy.yml` which builds `npm run build` and publishes `/dist` to Pages.
-- On first push to `main`, the workflow will run automatically.
-- In GitHub → Settings → Pages, set **Source** to **GitHub Actions** (if not already).
+## Run Locally
 
-## Custom domain (optional)
-- In GitHub → Settings → Pages, add your domain (e.g., `jamesclubley.com`).
-- Create a `CNAME` file in the project root with just the domain name inside, commit it, and push.
-- In your DNS, create an `ALIAS`/`A` to GitHub Pages or follow GitHub instructions for apex/subdomain.
+**Prerequisites:**  Node.js
 
-## Resume
-- Put your PDF at `/public/resume.pdf` (create `public/` folder) and set `RESUME_URL = '/resume.pdf'` in `src/App.jsx`.
 
-## Notes
-- If assets don’t load on Pages, double-check the `base` option in `vite.config.js`.
-- To test the production build locally: `npm run build && npm run preview`.
+1. Install dependencies:
+   `npm install`
+2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
+3. Run the app:
+   `npm run dev`

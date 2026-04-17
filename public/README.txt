@@ -1,1 +1,0 @@
-Place static assets here. Example: resume.pdf
