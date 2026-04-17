@@ -26,7 +26,7 @@ export default function App() {
         {/* 3D Scroll-Rotation Reveal Section */}
         <div className="relative">
           <ImageSequence 
-            frameCount={60} 
+            frameCount={120} 
             basePath="/render/frame_" 
             extension="png" 
           />

@@ -47,8 +47,8 @@ export const ImageSequence: React.FC<ImageSequenceProps> = ({
 
     for (let i = 1; i <= frameCount; i++) {
       const img = new Image();
-      // Pad index with zeros if needed (e.g. 001, 002...)
-      const paddedIndex = String(i).padStart(3, '0');
+      // Pad index with zeros (e.g. 000001, 000002...)
+      const paddedIndex = String(i).padStart(6, '0');
       img.src = `${basePath}${paddedIndex}.${extension}`;
       img.onload = () => {
         loadedCount++;
