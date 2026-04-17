@@ -1,5 +1,6 @@
 // Keep all data here; imports read-only in components.
 export const PROJECTS = [
+<<<<<<< HEAD
   {
     slug: "bmw-k100-build",
     title: "BMW K100 Build",
@@ -16,6 +17,8 @@ export const PROJECTS = [
     gallery: ["/img/K100_frame_assembly.png", "/img/K100dixer.jpg"],
     links: { view: "#", code: "https://github.com/Clubberz" },
   },
+=======
+>>>>>>> parent of 19970fc (updated moto)
   {
     slug: "bracket-stress-validation",
     title: "Bracket — Stress Validation",
