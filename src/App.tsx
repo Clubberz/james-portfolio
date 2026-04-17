@@ -27,7 +27,7 @@ export default function App() {
         <div className="relative">
           <ImageSequence 
             frameCount={120} 
-            basePath="/render/frame_" 
+            basePath="/Frame" 
             extension="png" 
           />
           

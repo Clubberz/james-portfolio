@@ -129,8 +129,8 @@ export const ImageSequence: React.FC<ImageSequenceProps> = ({
           <div className="absolute inset-0 z-40 flex flex-col items-center justify-center bg-zinc-900 p-8 text-center">
             <div className="text-white font-black text-2xl tracking-tighter mb-4 opacity-80">ASSET_NOT_FOUND</div>
             <p className="text-zinc-500 font-mono text-[11px] max-w-sm leading-relaxed uppercase tracking-widest">
-              Please ensure your 120 frames are uploaded to: <br/>
-              <span className="text-zinc-300">/public/render/frame_000001.png</span> ... <span className="text-zinc-300">frame_000120.png</span>
+              Looking for: <span className="text-zinc-300 font-bold">{basePath}000001.{extension}</span><br/><br/>
+              Please ensure your 120 frames are in the <span className="text-white">public/</span> folder.
             </p>
           </div>
         )}
