@@ -57,7 +57,13 @@ export const ImageSequence: React.FC<ImageSequenceProps> = ({
         img.onload = () => {
           loadedCount++;
           setLoadProgress(Math.floor((loadedCount / frameCount) * 100));
-          if (loadedCount === frameCount) setIsLoading(false);
+          // If the first image finishes loading, draw it immediately
+          if (i === 1) {
+            setImages([...loadedImages]); 
+          }
+          if (loadedCount === frameCount) {
+            setIsLoading(false);
+          }
         };
 
         img.onerror = () => {
@@ -126,7 +132,9 @@ export const ImageSequence: React.FC<ImageSequenceProps> = ({
     const unsubscribe = currentIndex.on('change', render);
     
     // Initial call
-    handleResize();
+    if (!isLoading) {
+      handleResize();
+    }
 
     return () => {
       window.removeEventListener('resize', handleResize);
