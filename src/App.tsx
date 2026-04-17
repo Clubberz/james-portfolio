@@ -9,7 +9,7 @@ import { Hero } from './components/Hero';
 import { ProjectCard } from './components/ProjectCard';
 import { ExperienceTimeline } from './components/ExperienceTimeline';
 import { TechStack } from './components/TechStack';
-import { VideoScrub } from './components/VideoScrub';
+import { ImageSequence } from './components/ImageSequence';
 import { PROJECTS, EXPERIENCES, SKILLS } from './constants';
 import { motion } from 'motion/react';
 
@@ -35,8 +35,10 @@ export default function App() {
               </div>
            </div>
 
-           <VideoScrub 
-             videoSrc="/render/render.mp4" 
+           <ImageSequence 
+             frameCount={120} 
+             basePath="/render/Frame" 
+             extension="png" 
            />
         </section>
 
