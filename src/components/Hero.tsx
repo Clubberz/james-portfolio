@@ -20,8 +20,8 @@ export const Hero = () => {
         </div>
 
         <h1 className="text-6xl md:text-[9vw] font-black tracking-tighter leading-[0.85] uppercase mb-12 text-white italic transform -skew-x-6">
-          Precision <br />
-          <span className="opacity-40">Architect.</span>
+          Design <br />
+          <span className="opacity-40">At Speed.</span>
         </h1>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto items-start text-left">
@@ -32,7 +32,7 @@ export const Hero = () => {
             className="border-l border-white/10 pl-6 py-2"
           >
             <span className="block font-mono text-[10px] uppercase tracking-widest text-white/30 mb-2">01. FOCUS</span>
-            <p className="text-sm font-medium text-white/70 leading-relaxed uppercase">Distributed Architecture & Performance</p>
+            <p className="text-sm font-medium text-white/70 leading-relaxed uppercase">Mechanical Design & Aerospace Systems</p>
           </motion.div>
           
           <motion.div 
@@ -41,8 +41,8 @@ export const Hero = () => {
             transition={{ delay: 0.6 }}
             className="md:col-span-1 border-l border-white/10 pl-6 py-2"
           >
-            <span className="block font-mono text-[10px] uppercase tracking-widest text-white/30 mb-2">02. ROLE</span>
-            <p className="text-sm font-medium text-white/70 leading-relaxed uppercase">Senior Systems Engineer @ Global Cloud</p>
+            <span className="block font-mono text-[10px] uppercase tracking-widest text-white/30 mb-2">02. STATUS</span>
+            <p className="text-sm font-medium text-white/70 leading-relaxed uppercase">MECH @ Rice University // FSAE Team Lead</p>
           </motion.div>
 
           <motion.div 

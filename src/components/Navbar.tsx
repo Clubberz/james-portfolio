@@ -19,7 +19,7 @@ export const Navbar = () => {
           </div>
           <div className="hidden md:block">
             <div className="text-[10px] font-black tracking-tighter text-white leading-none">JAMES_CLUBLEY</div>
-            <div className="text-[8px] font-mono text-white/30 tracking-widest leading-none">CORE_SYSTEMS_ENG</div>
+            <div className="text-[8px] font-mono text-white/30 tracking-widest leading-none">AERO_MECH_ENG</div>
           </div>
         </div>
         

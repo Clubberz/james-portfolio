@@ -49,10 +49,10 @@ export default function App() {
               <div className="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-40 transition-opacity">
                 <span className="font-mono text-[10px] uppercase tracking-widest leading-relaxed">SYSTEM_VISUALIZATION_A_01</span>
               </div>
-              <h3 className="text-3xl font-black tracking-tighter text-white mb-6">UNIFIED_SYSTEMS_CONTROL</h3>
+              <h3 className="text-3xl font-black tracking-tighter text-white mb-6">AIRCRAFT & RACING SYSTEMS</h3>
               <p className="text-white/40 max-w-md font-medium leading-relaxed mb-8">
-                Visualizing data flow and latency across globally distributed nodes in real-time. 
-                Our architecture ensures 99.999% reliability under peak load.
+                From Rice Racing's first electric FSAE car to liquid fuel rocket engines. 
+                I focus on the intersection of high-fidelity analysis and hands-on fabrication.
               </p>
               <div className="aspect-video bg-black/40 border border-white/10 rounded overflow-hidden relative">
                  <img 
@@ -146,9 +146,9 @@ export default function App() {
               </p>
               
               <div className="flex flex-wrap justify-center gap-12">
-                <a href="mailto:contact@nexus-sys.io" className="text-xl font-bold hover:text-brand-accent transition-colors">EMAIL</a>
-                <a href="#" className="text-xl font-bold hover:text-brand-accent transition-colors">LINKEDIN</a>
-                <a href="#" className="text-xl font-bold hover:text-brand-accent transition-colors">GITHUB</a>
+                <a href="mailto:jamestjclubley@gmail.com" className="text-xl font-bold hover:text-brand-accent transition-colors">EMAIL</a>
+                <a href="https://jamesclubley.com" className="text-xl font-bold hover:text-brand-accent transition-colors">WEBSITE</a>
+                <a href="https://github.com/clubberz" target="_blank" rel="noopener noreferrer" className="text-xl font-bold hover:text-brand-accent transition-colors">GITHUB</a>
               </div>
             </motion.div>
           </div>
@@ -158,11 +158,11 @@ export default function App() {
       <footer className="py-20 bg-black text-white/30">
         <div className="container-tight flex flex-col md:flex-row justify-between items-center gap-10">
           <div className="text-[10px] font-black uppercase tracking-[0.3em]">
-            NEXUS ENGINEERING // BUILT ON CLOUD INFRASTRUCTURE
+            JAMES CLUBLEY // MECH_ENG @ RICE UNIVERSITY
           </div>
           <div className="flex gap-12 text-[10px] font-black uppercase tracking-[0.3em]">
             <span>© 2026</span>
-            <span className="text-white/10 italic">OPTIMIZED_FOR_PERFORMANCE</span>
+            <span className="text-white/10 italic">OPTIMIZED_BY_DESIGN</span>
           </div>
         </div>
       </footer>
