@@ -3,40 +3,91 @@ import { Project, Experience, Skill } from './types';
 export const PROJECTS: Project[] = [
   {
     id: '1',
-    title: 'RR01 FSAE Vehicle',
-    description: 'd',
+    slug: 'bmw-k100-restomod',
+    title: 'BMW K100 Restomod',
+    description: 'Custom frame and suspension development. Engineered a cantilever suspension to eliminate stock mount points, significantly improving vehicle dynamics through 3D photogrammetry and FEA.',
     tags: ['Mechanical Design', 'FEA', 'Photogrammetry', 'Fabrication'],
     github: 'https://github.com/clubberz',
-    image: '/images/RR01.png',
-    video: '/videos/showcase.mp4',
-    year: '2024'
+    image: '/images/bmw-k100.jpg',
+    video: '/videos/bmw-k100.mp4',
+    year: '2024',
+    content: `## Project Overview
+
+The objective was to take a standard BMW K100 and completely rebuild the suspension architecture to strip weight and lower the center of gravity. 
+
+### Key Engineering Changes
+* **Cantilever Suspension**: Redesigned the geometry completely from the ground up using **Siemens NX**.
+* **Photogrammetry Interface**: Used 3D scanning to perfectly map the original engine casing and frame mounts to trace attachment points within a 0.5mm tolerance.
+* **FEA Analysis**: Simulated 5G bump loads on the suspension linkages in software before CNC machining the structural links.
+
+### The Build Process
+The frame was chopped and tig-welded. It's one thing to design parts, but seeing it come off the mill and perfectly mate with the raw engine block is another.
+
+> "A huge exercise in bridging the gap between digital ideation and physical fabrication."
+`
   },
   {
     id: '2',
+    slug: '944-turbo-rebuild',
     title: '944 Turbo Race Rebuild',
     description: 'Complete powertrain modernization. Integrated a MegaSquirt ECU for modern fuel/ignition control and designed a high-downforce aerodynamic package including a custom splitter and rear wing.',
     tags: ['ECU Tuning', 'Aerodynamics', 'Engine Building'],
     github: 'https://github.com/clubberz',
-    image: '/images/bmwk100.png',
-    year: '2024'
+    image: '/images/porsche-944.jpg',
+    year: '2024',
+    content: `## The 944 Journey
+
+Converting an analog car to a modern tuned track monster.
+
+### Powertrain Modernization
+* Replaced the factory wiring harness.
+* Integrated a digital **MegaSquirt ECU**.
+* Built a custom tuning map from scratch, iterating over dozens of dyno sessions to smooth out the torque curve.
+
+### Aerodynamics package
+The mechanical grip wasn't going to be enough. I utilized **StarCCM+** to optimize a complete aero package:
+* Bespoke front splitter extending 4 inches.
+* Angle-adjustable rear wing generating up to 300lbs of downforce at 120mph.
+`
   },
   {
     id: '3',
+    slug: 'liquid-fuel-engine',
     title: 'Liquid Fuel Engine',
     description: 'Critical component design for Rice Eclipse’s liquid fuel rocket project. Utilized extensive CFD, FEA, and thermal analysis to optimize thrust and system reliability.',
     tags: ['Aerospace', 'CFD', 'Thermal Analysis'],
     github: 'https://github.com/clubberz',
     image: '/images/rocket-engine.jpg',
-    year: '2023'
+    year: '2023',
+    content: `## The Engine Core
+
+Designed structural and thermal components for the **Rice Eclipse** liquid rocket team.
+
+### Focus Areas
+* **Thermal Analysis**: Modeled the heat flux through the combustion chamber wall. Used regenerative cooling channels to keep the aluminum safely below its yield temperature during the 5-second hot-fire.
+* **Structural Safety**: Applied rigorous FEA targeting a factor of safety of 1.5x during maximum chamber pressure events.
+
+Working on a rocket teaches you that there are no small mistakes. Every calculation must be double and triple-checked.
+`
   },
   {
     id: '4',
+    slug: 'solar-powered-race-car',
     title: 'Solar Powered Race Car',
     description: 'Retrofitted an ICE go-kart with an electric powertrain and solar array. Improved total system efficiency by ~20% through aggressive weight reduction and redesign.',
     tags: ['EV Architecture', 'Solar', 'Efficiency'],
     github: 'https://github.com/clubberz',
     image: '/images/solar-car.jpg',
-    year: '2022'
+    year: '2022',
+    content: `## EV Conversion & Solar Architecture
+
+Took an old combustion-engine kart and turned it into an ultra-efficient electric prototype.
+
+### Key Milestones
+* Designed and welded a custom aluminum rack for the solar array to keep weight absolute minimum while preventing flex.
+* Rewired the motor controller to accept input directly from the MPPT charge controller and battery array inline.
+* Achieved a continuous driving state under ideal sun where power generated matched power consumed at 15mph.
+`
   }
 ];
 

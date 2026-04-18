@@ -1,13 +1,15 @@
 export interface Project {
   id: string;
+  slug: string;
   title: string;
   description: string;
   tags: string[];
   link?: string;
   github?: string;
-  image: string;
+  image?: string;
   video?: string;
   year: string;
+  content: string;
 }
 
 export interface Experience {

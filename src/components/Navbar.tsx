@@ -4,8 +4,26 @@
  */
 
 import { motion } from 'motion/react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export const Navbar = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, hash: string) => {
+    e.preventDefault();
+    if (location.pathname !== '/') {
+      navigate(`/${hash}`);
+      setTimeout(() => {
+        const element = document.querySelector(hash);
+        element?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    } else {
+      const element = document.querySelector(hash);
+      element?.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center p-6 md:p-10 pointer-events-none">
       <motion.div 
@@ -13,7 +31,13 @@ export const Navbar = () => {
         animate={{ y: 0, opacity: 1 }}
         className="w-full max-w-7xl glass-nav px-8 py-4 rounded-full flex items-center justify-between pointer-events-auto"
       >
-        <div className="flex items-center gap-4">
+        <div 
+          className="flex items-center gap-4 cursor-pointer"
+          onClick={() => {
+            if (location.pathname !== '/') navigate('/');
+            else window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+        >
           <div className="w-8 h-8 bg-white flex items-center justify-center">
             <span className="text-black font-black text-xs">JC</span>
           </div>
@@ -24,9 +48,9 @@ export const Navbar = () => {
         </div>
         
         <div className="flex items-center gap-6 md:gap-10 text-[10px] font-bold uppercase tracking-[0.2em] text-white/50">
-          <a href="#projects" className="hover:text-white transition-colors cursor-pointer">/WORK</a>
-          <a href="#experience" className="hover:text-white transition-colors cursor-pointer">/ARCHIVE</a>
-          <a href="#contact" className="hover:text-white transition-colors cursor-pointer underline decoration-white/20 underline-offset-4">/INIT_CONTACT</a>
+          <a href="#projects" onClick={(e) => handleNavClick(e, '#projects')} className="hover:text-white transition-colors cursor-pointer">/WORK</a>
+          <a href="#experience" onClick={(e) => handleNavClick(e, '#experience')} className="hover:text-white transition-colors cursor-pointer">/ARCHIVE</a>
+          <a href="#contact" onClick={(e) => handleNavClick(e, '#contact')} className="hover:text-white transition-colors cursor-pointer underline decoration-white/20 underline-offset-4">/INIT_CONTACT</a>
         </div>
       </motion.div>
     </nav>
