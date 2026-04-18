@@ -6,7 +6,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThreeBackground } from './components/ThreeBackground';
 import { Navbar } from './components/Navbar';
-import { ColorSelector } from './components/ColorSelector';
 import { Home } from './pages/Home';
 import { ProjectDetail } from './pages/ProjectDetail';
 
@@ -33,8 +32,6 @@ export default function App() {
             </div>
           </div>
         </footer>
-
-        <ColorSelector />
       </div>
     </Router>
   );

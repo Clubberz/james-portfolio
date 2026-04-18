@@ -5,18 +5,25 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
-  --color-brand-primary: #ffffff;
-  --color-brand-secondary: #8E9299;
-  --color-brand-accent: var(--theme-accent, #ffffff);
-  --color-bg-dark: #171717;
-  --color-surface: #222222;
+  /* Tell Tailwind to look at the root variables */
+  --color-brand-primary: var(--primary);
+  --color-brand-secondary: var(--secondary);
+  --color-brand-accent: var(--accent);
+  --color-bg-dark: var(--bg-dark);
+  --color-surface: var(--surface);
 }
 
 @layer base {
   :root {
-    --theme-accent: #ffffff;
+    /* 🎨 VS CODE COLOR PICKER WORKS HERE! */
+    --primary: #ffffff;
+    --secondary: #8E9299;
+    --accent: #1443ff; 
+    --bg-dark: #171717;
+    --surface: #222222;
   }
 
+@layer base {
   html {
     scroll-behavior: smooth;
   }
