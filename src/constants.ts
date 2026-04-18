@@ -4,10 +4,10 @@ export const PROJECTS: Project[] = [
   {
     id: '1',
     title: 'BMW K100 Restomod',
-    description: 'Custom frame and suspension development. Engineered a cantilever suspension to eliminate stock mount points, significantly improving vehicle dynamics through 3D photogrammetry and FEA.',
+    description: '',
     tags: ['Mechanical Design', 'FEA', 'Photogrammetry', 'Fabrication'],
     github: 'https://github.com/clubberz',
-    image: '/images/bmwk100.jpg',
+    image: '/images/bmwk100.png',
     video: '/videos/showcase.mp4',
     year: '2024'
   },
@@ -17,7 +17,7 @@ export const PROJECTS: Project[] = [
     description: 'Complete powertrain modernization. Integrated a MegaSquirt ECU for modern fuel/ignition control and designed a high-downforce aerodynamic package including a custom splitter and rear wing.',
     tags: ['ECU Tuning', 'Aerodynamics', 'Engine Building'],
     github: 'https://github.com/clubberz',
-    image: '/images/porsche-944.jpg',
+    image: '/images/bmwk100.png',
     year: '2024'
   },
   {
