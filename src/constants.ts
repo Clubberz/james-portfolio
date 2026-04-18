@@ -7,8 +7,8 @@ export const PROJECTS: Project[] = [
     description: 'Custom frame and suspension development. Engineered a cantilever suspension to eliminate stock mount points, significantly improving vehicle dynamics through 3D photogrammetry and FEA.',
     tags: ['Mechanical Design', 'FEA', 'Photogrammetry', 'Fabrication'],
     github: 'https://github.com/clubberz',
-    image: 'https://picsum.photos/seed/bmw-k100/800/600',
-    video: '/showcase.mp4',
+    image: '/images/bmw-k100.jpg',
+    video: '/videos/bmw-k100.mp4',
     year: '2024'
   },
   {
@@ -17,7 +17,7 @@ export const PROJECTS: Project[] = [
     description: 'Complete powertrain modernization. Integrated a MegaSquirt ECU for modern fuel/ignition control and designed a high-downforce aerodynamic package including a custom splitter and rear wing.',
     tags: ['ECU Tuning', 'Aerodynamics', 'Engine Building'],
     github: 'https://github.com/clubberz',
-    image: 'https://picsum.photos/seed/porsche-944/800/600',
+    image: '/images/porsche-944.jpg',
     year: '2024'
   },
   {
@@ -26,7 +26,7 @@ export const PROJECTS: Project[] = [
     description: 'Critical component design for Rice Eclipse’s liquid fuel rocket project. Utilized extensive CFD, FEA, and thermal analysis to optimize thrust and system reliability.',
     tags: ['Aerospace', 'CFD', 'Thermal Analysis'],
     github: 'https://github.com/clubberz',
-    image: 'https://picsum.photos/seed/rocket-engine/800/600',
+    image: '/images/rocket-engine.jpg',
     year: '2023'
   },
   {
@@ -35,7 +35,7 @@ export const PROJECTS: Project[] = [
     description: 'Retrofitted an ICE go-kart with an electric powertrain and solar array. Improved total system efficiency by ~20% through aggressive weight reduction and redesign.',
     tags: ['EV Architecture', 'Solar', 'Efficiency'],
     github: 'https://github.com/clubberz',
-    image: 'https://picsum.photos/seed/solar-car/800/600',
+    image: '/images/solar-car.jpg',
     year: '2022'
   }
 ];

@@ -28,7 +28,7 @@ export default function App() {
             <p className="text-xl text-white/40 font-medium">From custom vehicle restomods to aerospace-grade simulations.</p>
           </div>
           
-          <div className="flex flex-col gap-12 px-6 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-6 max-w-7xl mx-auto">
             {PROJECTS.map((project, i) => (
               <ProjectCard key={project.id} project={project} index={i} />
             ))}

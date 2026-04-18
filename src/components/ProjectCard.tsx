@@ -35,7 +35,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 1, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
       viewport={{ once: true, margin: "-100px" }}
-      className="group relative h-[70vh] w-full apple-card overflow-hidden"
+      className="group relative h-[60vh] w-full apple-card overflow-hidden"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onTouchStart={handleMouseEnter}
@@ -60,25 +60,25 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
             className="w-full h-full object-cover transition-transform duration-[2s] ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-105"
           />
         )}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-black/80 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/90 pointer-events-none" />
       </div>
 
-      <div className="absolute bottom-16 left-16 right-16 flex flex-col items-start text-white pointer-events-none">
-        <span className="text-sm font-bold uppercase tracking-widest mb-4 opacity-80">
+      <div className="absolute bottom-8 left-8 right-8 md:bottom-12 md:left-12 md:right-12 flex flex-col items-start text-white pointer-events-none">
+        <span className="text-xs font-bold uppercase tracking-widest mb-3 opacity-80">
           Case Study 0{index + 1}
         </span>
-        <h3 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
+        <h3 className="text-3xl md:text-4xl font-bold mb-3 tracking-tight">
           {project.title}
         </h3>
-        <p className="text-lg md:text-xl max-w-xl opacity-90 leading-relaxed font-medium">
+        <p className="text-base md:text-lg max-w-xl opacity-90 leading-relaxed font-medium">
           {project.description}
         </p>
         
-        <div className="flex flex-wrap gap-3 mt-8">
+        <div className="flex flex-wrap gap-2 mt-6">
           {project.tags.map(tag => (
             <span 
               key={tag}
-              className="px-4 py-2 text-xs font-bold rounded-full bg-white/10 backdrop-blur-md border border-white/20"
+              className="px-3 py-1.5 text-[10px] md:text-xs font-bold rounded-full bg-white/10 backdrop-blur-md border border-white/20"
             >
               {tag}
             </span>
