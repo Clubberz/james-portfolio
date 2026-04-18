@@ -42,8 +42,8 @@ export const Home: React.FC = () => {
           <div className="flex flex-wrap items-center justify-center md:justify-start gap-2">
             <button
               onClick={() => setSelectedTag(null)}
-              className={`px-4 py-2 text-xs font-bold uppercase tracking-widest rounded-full transition-colors border ${
-                selectedTag === null ? 'bg-white text-black border-white' : 'bg-transparent text-white/40 border-white/10 hover:border-white/30'
+              className={`px-4 py-2 cursor-pointer text-xs font-bold uppercase tracking-widest rounded-full transition-colors border ${
+                selectedTag === null ? 'bg-white text-black border-white' : 'bg-transparent text-white/40 border-white/10 lg:hover:border-white/30'
               }`}
             >
               All
@@ -51,9 +51,9 @@ export const Home: React.FC = () => {
             {allTags.map(tag => (
               <button
                 key={tag}
-                onClick={() => setSelectedTag(tag)}
-                className={`px-4 py-2 text-xs font-bold uppercase tracking-widest rounded-full transition-colors border ${
-                  selectedTag === tag ? 'bg-brand-accent text-black border-brand-accent' : 'bg-transparent text-white/40 border-white/10 hover:border-white/30 hover:text-white'
+                onClick={() => setSelectedTag(selectedTag === tag ? null : tag)}
+                className={`px-4 py-2 cursor-pointer text-xs font-bold uppercase tracking-widest rounded-full transition-colors border ${
+                  selectedTag === tag ? 'bg-brand-accent text-black border-brand-accent' : 'bg-transparent text-white/40 border-white/10 lg:hover:border-white/30 lg:hover:text-white'
                 }`}
               >
                 {tag}

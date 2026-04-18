@@ -4,7 +4,7 @@
  */
 
 import { motion } from 'motion/react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 
 export const Navbar = () => {
   const location = useLocation();
@@ -25,7 +25,7 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center p-6 md:p-10 pointer-events-none">
+    <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center p-6 md:p-10 pointer-events-none mt-8">
       <motion.div 
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -47,10 +47,11 @@ export const Navbar = () => {
           </div>
         </div>
         
-        <div className="flex items-center gap-6 md:gap-10 text-[10px] font-bold uppercase tracking-[0.2em] text-white/50">
-          <a href="#projects" onClick={(e) => handleNavClick(e, '#projects')} className="hover:text-white transition-colors cursor-pointer">/WORK</a>
-          <a href="#experience" onClick={(e) => handleNavClick(e, '#experience')} className="hover:text-white transition-colors cursor-pointer">/ARCHIVE</a>
-          <a href="#contact" onClick={(e) => handleNavClick(e, '#contact')} className="hover:text-white transition-colors cursor-pointer underline decoration-white/20 underline-offset-4">/INIT_CONTACT</a>
+        <div className="flex items-center gap-4 md:gap-8 text-[10px] font-bold uppercase tracking-[0.2em] text-white/50">
+          <a href="#projects" onClick={(e) => handleNavClick(e, '#projects')} className={`hover:text-white transition-colors cursor-pointer ${location.pathname === '/' ? '' : 'hidden md:inline'}`}>/WORK</a>
+          <a href="#experience" onClick={(e) => handleNavClick(e, '#experience')} className={`hover:text-white transition-colors cursor-pointer ${location.pathname === '/' ? '' : 'hidden md:inline'}`}>/ARCHIVE</a>
+          <Link to="/photography" className={`hover:text-white transition-colors cursor-pointer ${location.pathname === '/photography' ? 'text-brand-accent' : ''}`}>/PHOTOGRAPHY</Link>
+          <a href="#contact" onClick={(e) => handleNavClick(e, '#contact')} className={`hover:text-white transition-colors cursor-pointer underline decoration-white/20 underline-offset-4 ${location.pathname === '/' ? '' : 'hidden md:inline'}`}>/INIT_CONTACT</a>
         </div>
       </motion.div>
     </nav>

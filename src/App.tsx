@@ -8,16 +8,26 @@ import { ThreeBackground } from './components/ThreeBackground';
 import { Navbar } from './components/Navbar';
 import { Home } from './pages/Home';
 import { ProjectDetail } from './pages/ProjectDetail';
+import { Photography } from './pages/Photography';
 
 export default function App() {
   return (
     <Router>
-      <div className="relative">
+      <div className="relative pt-8"> {/* added pt-8 to account for the sticky banner */}
+        {/* Global WIP Banner */}
+        <div className="fixed top-0 left-0 w-full z-[100] bg-zinc-900 border-b border-white/5 text-center py-1.5 flex justify-center items-center gap-3 backdrop-blur-md">
+           <div className="w-1.5 h-1.5 rounded-full bg-yellow-500 animate-pulse" />
+           <span className="text-[9px] font-mono font-bold uppercase tracking-widest text-white/50">
+             Warning: Layout under construction // Work in progress
+           </span>
+        </div>
+
         <ThreeBackground />
         <Navbar />
 
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/photography" element={<Photography />} />
           <Route path="/project/:slug" element={<ProjectDetail />} />
         </Routes>
 
