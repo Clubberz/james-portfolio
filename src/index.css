@@ -7,18 +7,22 @@
 
   --color-brand-primary: #ffffff;
   --color-brand-secondary: #8E9299;
-  --color-brand-accent: #ffffff;
+  --color-brand-accent: var(--theme-accent, #ffffff);
   --color-bg-dark: #171717;
   --color-surface: #222222;
 }
 
 @layer base {
+  :root {
+    --theme-accent: #ffffff;
+  }
+
   html {
     scroll-behavior: smooth;
   }
   
   body {
-    @apply bg-[#171717] text-brand-primary font-sans antialiased selection:bg-white selection:text-black;
+    @apply bg-[#171717] text-brand-primary font-sans antialiased selection:bg-brand-accent selection:text-black;
   }
 
   h1, h2, h3, h4 {
