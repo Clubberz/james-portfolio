@@ -8,6 +8,7 @@ export interface Project {
   github?: string;
   image?: string;
   video?: string;
+  gallery?: string[];
   year: string;
   content: string;
   relatedProjects?: string[];

@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { Project } from '../types';
@@ -16,17 +16,22 @@ interface ProjectCardProps {
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
 
+  // Auto-play the video on load
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(() => {});
+    }
+  }, []);
+
   const handleMouseEnter = () => {
     if (videoRef.current) {
-      videoRef.current.play().catch(() => {
-        // Ignore play interruption errors when hovering quickly
-      });
+      videoRef.current.pause();
     }
   };
 
   const handleMouseLeave = () => {
     if (videoRef.current) {
-      videoRef.current.pause();
+      videoRef.current.play().catch(() => {});
     }
   };
 
@@ -53,6 +58,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
             muted
             loop
             playsInline
+            autoPlay
             className="w-full h-full object-cover transition-transform duration-[2s] ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-105"
           />
         ) : project.image ? (
@@ -65,10 +71,24 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
         ) : (
           <div className="w-full h-full bg-zinc-800 transition-transform duration-[2s] ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-105" />
         )}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/90 pointer-events-none" />
+        {/* Subtle persistent gradient for the resting title */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none group-hover:opacity-0 transition-opacity duration-500" />
+        {/* Deep hover gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/90 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out" />
       </div>
 
-      <div className="absolute bottom-8 left-8 right-8 md:bottom-12 md:left-12 md:right-12 flex flex-col items-start text-white pointer-events-none z-10">
+      {/* Resting State: Minimal Title (Disappears on Hover) */}
+      <div className="absolute bottom-8 left-8 right-8 z-10 pointer-events-none flex justify-between items-end transition-opacity duration-500 group-hover:opacity-0 text-white">
+         <h3 className="text-xl font-bold tracking-tight uppercase shadow-sm">
+           {project.title}
+         </h3>
+         <span className="text-[9px] font-mono tracking-widest uppercase opacity-50 border border-white/20 px-2 py-1 rounded bg-black/40 backdrop-blur-sm">
+           0{index + 1}
+         </span>
+      </div>
+
+      {/* Hover State: Full Description (Appears on Hover) */}
+      <div className="absolute bottom-8 left-8 right-8 md:bottom-12 md:left-12 md:right-12 flex flex-col items-start text-white pointer-events-none z-10 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-out">
         <span className="text-[10px] font-bold uppercase tracking-[0.2em] mb-3 opacity-80">
           Case Study 0{index + 1}
         </span>

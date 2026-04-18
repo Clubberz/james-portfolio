@@ -2,14 +2,42 @@ import { Project, Experience, Skill } from './types';
 
 export const PROJECTS: Project[] = [
   {
+    id: '6',
+    slug: 'rr01-fsae-car',
+    title: 'RR01 FSAE Race Car',
+    description: 'Complete systems integration and dynamic validation for the RR01 Formula SAE race car. Pushing the absolute limits of mechanical grip and tractive performance on the track.',
+    tags: ['FSAE', 'Vehicle Dynamics', 'Testing', 'Integration'],
+    github: 'https://github.com/clubberz',
+    image: '/images/RR01.png',
+    video: '/videos/showcase.mp4',
+    year: '2025',
+    relatedProjects: ['fsae-ev-car', 'fsae-intake-plenum'],
+    content: `## The Flagship Platform: RR01
+
+The RR01 represents the culmination of countless hours of design, analysis, and manufacturing. As the flagship vehicle for Rice Racing, this platform integrates our completely custom architecture with aggressive aero and suspension geometries.
+
+### Key Validation Stages
+* **Systems Integration**: Harmonizing the high-voltage tractive system with advanced, adjustable suspension geometries in a highly constrained chassis footprint.
+* **Track Testing**: Executing extensive on-track dynamic testing to correlate our SIMULINK lap time simulations with actual, real-world suspension telemetry points.
+
+Building a race car in CAD is one thing. Putting it on the asphalt and wringing it out on the skidpad is what actually proves the engineering.
+`
+  },
+  {
     id: '1',
     slug: 'bmw-k100-restomod',
     title: 'BMW K100 Restomod',
     description: 'Custom frame and suspension development. Engineered a cantilever suspension to eliminate stock mount points, significantly improving vehicle dynamics through 3D photogrammetry and FEA.',
     tags: ['Mechanical Design', 'FEA', 'Photogrammetry', 'Fabrication'],
     github: 'https://github.com/clubberz',
-    image: '/images/bmw-k100.jpg',
+    image: '/images/bmwk100.png',
     video: '/videos/bmw-k100.mp4',
+    gallery: [
+      '/images/bmwk100.png',
+      'https://picsum.photos/seed/welding3/1920/1080',
+      'https://picsum.photos/seed/cadengine/1920/1080',
+      'https://picsum.photos/seed/motorcycleparts/1920/1080'
+    ],
     year: '2024',
     content: `## Project Overview
 

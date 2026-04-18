@@ -1,16 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, Navigate, Link } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { ArrowLeft, ExternalLink, Github } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Github, ChevronLeft, ChevronRight } from 'lucide-react';
 import Markdown from 'react-markdown';
 import { PROJECTS } from '../constants';
 
 export const ProjectDetail: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   
   // Scroll to top when page changes
   useEffect(() => {
     window.scrollTo(0, 0);
+    setCurrentImageIndex(0);
   }, [slug]);
 
   const project = PROJECTS.find(p => p.slug === slug);
@@ -22,6 +24,18 @@ export const ProjectDetail: React.FC = () => {
   const related = project.relatedProjects
     ?.map(relatedSlug => PROJECTS.find(p => p.slug === relatedSlug))
     .filter((p): p is typeof PROJECTS[0] => p !== undefined);
+
+  const nextImage = () => {
+    if (project.gallery) {
+      setCurrentImageIndex((prev) => (prev + 1) % project.gallery!.length);
+    }
+  };
+
+  const prevImage = () => {
+    if (project.gallery) {
+      setCurrentImageIndex((prev) => (prev - 1 + project.gallery!.length) % project.gallery!.length);
+    }
+  };
 
   return (
     <motion.main 
@@ -61,9 +75,49 @@ export const ProjectDetail: React.FC = () => {
           </div>
         </div>
 
-        {/* Media Block */}
+        {/* Media Block (Carousel or Single Content) */}
         <div className="w-full aspect-video bg-zinc-900 overflow-hidden rounded-[2rem] border border-white/5 mb-16 relative group">
-          {project.video ? (
+          {project.gallery && project.gallery.length > 0 ? (
+             <div className="w-full h-full relative flex items-center justify-center">
+               <img 
+                 key={currentImageIndex} // force re-render for clean transition
+                 src={project.gallery[currentImageIndex]} 
+                 alt={`${project.title} gallery frame ${currentImageIndex + 1}`}
+                 className="w-full h-full object-cover animate-in fade-in duration-500"
+                 referrerPolicy="no-referrer"
+               />
+               
+               {/* Controls */}
+               <div className="absolute inset-x-4 flex justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <button 
+                    onClick={prevImage} 
+                    className="p-3 bg-black/60 backdrop-blur-md rounded-full text-white hover:bg-black/90 hover:scale-110 transition-all border border-white/10"
+                    aria-label="Previous image"
+                  >
+                    <ChevronLeft className="w-6 h-6" />
+                  </button>
+                  <button 
+                    onClick={nextImage} 
+                    className="p-3 bg-black/60 backdrop-blur-md rounded-full text-white hover:bg-black/90 hover:scale-110 transition-all border border-white/10"
+                    aria-label="Next image"
+                  >
+                    <ChevronRight className="w-6 h-6" />
+                  </button>
+               </div>
+               
+               {/* Indicators */}
+               <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-3">
+                  {project.gallery.map((_, i) => (
+                     <button 
+                       key={i} 
+                       onClick={() => setCurrentImageIndex(i)} 
+                       className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${i === currentImageIndex ? 'bg-white scale-125' : 'bg-white/30 hover:bg-white/50'}`} 
+                       aria-label={`Go to slide ${i + 1}`}
+                     />
+                  ))}
+               </div>
+            </div>
+          ) : project.video ? (
             <video 
               src={project.video}
               {...(project.image ? { poster: project.image } : {})}

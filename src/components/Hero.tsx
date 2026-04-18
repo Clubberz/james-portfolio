@@ -22,9 +22,10 @@ export const Hero = () => {
             <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-white/50">SYSTEM_ONLINE // PROTOCOL_V1.1</span>
           </div>
           
-          <h1 className="text-4xl md:text-6xl font-black tracking-tighter text-white mb-6 uppercase">
-            Hi, I'm <br />
-            <span className="text-brand-secondary italic transform -skew-x-6 inline-block">James.</span>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-mono font-bold tracking-tight text-white mb-6 uppercase">
+            Hi, I'm <br className="md:hidden" />
+            <span className="text-brand-secondary">James</span>
+            <span className="animate-pulse text-brand-accent ml-2">_</span>
           </h1>
           
           <p className="text-lg md:text-xl text-white/60 font-medium max-w-xl leading-relaxed mb-8">
@@ -60,7 +61,7 @@ export const Hero = () => {
             </div>
             <div className="w-full h-full bg-zinc-800 relative overflow-hidden">
                <img 
-                 src="https://picsum.photos/seed/engineer-portrait/1000/1000?grayscale" 
+                 src="/images/james.png" 
                  alt="James Clubley"
                  className="w-full h-full object-cover filter contrast-125 brightness-75 mix-blend-luminosity hover:mix-blend-normal transition-all duration-700" 
                  referrerPolicy="no-referrer"
