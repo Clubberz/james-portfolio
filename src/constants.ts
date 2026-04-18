@@ -4,10 +4,10 @@ export const PROJECTS: Project[] = [
   {
     id: '1',
     title: 'RR01 FSAE Vehicle',
-    description: '',
+    description: 'd',
     tags: ['Mechanical Design', 'FEA', 'Photogrammetry', 'Fabrication'],
     github: 'https://github.com/clubberz',
-    image: ''
+    image: '/images/RR01.png',
     video: '/videos/showcase.mp4',
     year: '2024'
   },
