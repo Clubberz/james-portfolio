@@ -7,8 +7,8 @@ export const PROJECTS: Project[] = [
     description: 'Custom frame and suspension development. Engineered a cantilever suspension to eliminate stock mount points, significantly improving vehicle dynamics through 3D photogrammetry and FEA.',
     tags: ['Mechanical Design', 'FEA', 'Photogrammetry', 'Fabrication'],
     github: 'https://github.com/clubberz',
-    image: '/images/bmw-k100.jpg',
-    video: '/videos/bmw-k100.mp4',
+    image: '/images/bmwk100.jpg',
+    video: '/videos/showcase.mp4',
     year: '2024'
   },
   {
