@@ -3,12 +3,26 @@ import { Project, Experience, Skill } from './types';
 export const PROJECTS: Project[] = [
   {
     id: '1',
-    slug: 'bmw-k100-restomod',
-    title: 'BMW K100 Restomod',
-    description: 'Custom frame and suspension development. Engineered a cantilever suspension to eliminate stock mount points, significantly improving vehicle dynamics through 3D photogrammetry and FEA.',
+    slug: 'RR01 FSAE Car',
+    title: 'RR01 FSAE Car',
+    description: '',
     tags: ['Mechanical Design', 'FEA', 'Photogrammetry', 'Fabrication'],
     github: 'https://github.com/clubberz',
-    image: '/images/bmw-k100.jpg',
+    video: '/videos/showcase.mp4',
+    year: '2024',
+    content: `## Project Overview
+
+The RR01 is the first car designed and built by the Rice Racing FSAE team. I led the design of the entire powertrain architecture.
+### Key Engineering Changes
+`
+  },
+  {
+    id: '2',
+    slug: 'BMW K100 Rebuild',
+    title: 'BMW K100 Rebuild',
+    description: '',
+    tags: ['ECU Tuning', 'Aerodynamics', 'Engine Building'],
+    github: 'https://github.com/clubberz',
     video: '/videos/bmw-k100.mp4',
     year: '2024',
     content: `## Project Overview
@@ -27,7 +41,8 @@ The frame was chopped and tig-welded. It's one thing to design parts, but seeing
 `
   },
   {
-    id: '2',
+    
+    id: '3',
     slug: '944-turbo-rebuild',
     title: '944 Turbo Race Rebuild',
     description: 'Complete powertrain modernization. Integrated a MegaSquirt ECU for modern fuel/ignition control and designed a high-downforce aerodynamic package including a custom splitter and rear wing.',
@@ -51,7 +66,7 @@ The mechanical grip wasn't going to be enough. I utilized **StarCCM+** to optimi
 `
   },
   {
-    id: '3',
+    id: '4',
     slug: 'liquid-fuel-engine',
     title: 'Liquid Fuel Engine',
     description: 'Critical component design for Rice Eclipse’s liquid fuel rocket project. Utilized extensive CFD, FEA, and thermal analysis to optimize thrust and system reliability.',
@@ -71,7 +86,7 @@ Working on a rocket teaches you that there are no small mistakes. Every calculat
 `
   },
   {
-    id: '4',
+    id: '5',
     slug: 'solar-powered-race-car',
     title: 'Solar Powered Race Car',
     description: 'Retrofitted an ICE go-kart with an electric powertrain and solar array. Improved total system efficiency by ~20% through aggressive weight reduction and redesign.',
