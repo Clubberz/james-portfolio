@@ -131,14 +131,14 @@ The vehicle represents a huge leap forward in the team's engineering capacity.
     description: 'Developed an optimized, 3D printed intake restrictor and plenum using extensive CFD. Iterated geometry to meet standard flow restriction guidelines while maximizing volumetric efficiency.',
     tags: ['CFD', 'Fluid Dynamics', 'Rapid Prototyping'],
     github: 'https://github.com/clubberz',
-    image: 'https://picsum.photos/seed/plenum/1920/1080?blur=4',
+    image: 'https://placehold.co/1920x1080/27272a/white?text=AWAITING+PHOTOS',
     year: '2025',
     relatedProjects: ['fsae-ev-car'],
     content: `## Restrictor Airflow Optimization
 
 FSAE rules strictly limit the engine's air intake via a 20mm restrictor. Our goal was to design a converging-diverging nozzle format that chokes flow as cleanly as possible.
 
-![Internal airflow streamlines mapped in StarCCM+ showing pressure drops at choked flow.](https://picsum.photos/seed/cfd/1200/800)
+![Internal airflow streamlines mapped in StarCCM+ showing pressure drops at choked flow.](https://placehold.co/1200x800/27272a/white?text=AWAITING+PHOTOS)
 
 ### Design & Prototyping
 1. **CFD Analysis**: Re-meshed over 14 different geometries pushing the boundaries of the venturi angles.
@@ -147,6 +147,102 @@ FSAE rules strictly limit the engine's air intake via a 20mm restrictor. Our goa
 
 The final iteration resulted in a +12% torque increase at our target 6000RPM range over the stock manifold.
 `
+  },
+  {
+    id: '7',
+    slug: 'fsae-exhaust-manifold',
+    title: 'FSAE exhaust manifold',
+    description: 'Custom routed exhaust manifold optimized for engine gas flow and packaging constraints.',
+    tags: ['FSAE', 'Fluid Dynamics', 'Fabrication'],
+    github: 'https://github.com/clubberz',
+    image: 'https://placehold.co/1920x1080/27272a/white?text=AWAITING+PHOTOS',
+    year: '2025',
+    content: `## Project Overview
+Awaiting detailed project write-up and telemetry data.`
+  },
+  {
+    id: '8',
+    slug: 'fsae-differential-mount',
+    title: 'FSAE Differential Mount',
+    description: 'High-stress differential mounting bracket designed and validated using FEA.',
+    tags: ['FSAE', 'FEA', 'Mechanical Design'],
+    github: 'https://github.com/clubberz',
+    image: 'https://placehold.co/1920x1080/27272a/white?text=AWAITING+PHOTOS',
+    year: '2025',
+    content: `## Project Overview
+Awaiting detailed project write-up and telemetry data.`
+  },
+  {
+    id: '9',
+    slug: 'fsae-drivetrain',
+    title: 'FSAE drivetrain',
+    description: 'Full drivetrain architecture from accumulator to hubs.',
+    tags: ['FSAE', 'Integration', 'Mechanical Design'],
+    github: 'https://github.com/clubberz',
+    image: 'https://placehold.co/1920x1080/27272a/white?text=AWAITING+PHOTOS',
+    year: '2025',
+    content: `## Project Overview
+Awaiting detailed project write-up and telemetry data.`
+  },
+  {
+    id: '10',
+    slug: 'big-air-kiteboard-handle',
+    title: 'Big Air Kiteboard Handle',
+    description: 'Custom machined and carbon-reinforced handle capable of withstanding extreme big-air dynamic loads.',
+    tags: ['Composites', 'Fabrication', 'Design'],
+    github: 'https://github.com/clubberz',
+    image: 'https://placehold.co/1920x1080/27272a/white?text=AWAITING+PHOTOS',
+    year: '2024',
+    content: `## Project Overview
+Awaiting detailed project write-up and telemetry data.`
+  },
+  {
+    id: '11',
+    slug: 'workshop-apron',
+    title: 'Workshop Apron',
+    description: 'Heavy-duty workshop apron tailored for custom fabrication and welding protection.',
+    tags: ['Fabrication', 'Design'],
+    github: 'https://github.com/clubberz',
+    image: 'https://placehold.co/1920x1080/27272a/white?text=AWAITING+PHOTOS',
+    year: '2023',
+    content: `## Project Overview
+Awaiting detailed project write-up and telemetry data.`
+  },
+  {
+    id: '12',
+    slug: 'building-a-crate',
+    title: 'Building a Crate',
+    description: 'Structural wood architecture and precise measurements for safe cargo transport.',
+    tags: ['Fabrication', 'Mechanical Design'],
+    github: 'https://github.com/clubberz',
+    image: 'https://placehold.co/1920x1080/27272a/white?text=AWAITING+PHOTOS',
+    year: '2023',
+    content: `## Project Overview
+Awaiting detailed project write-up.`
+  },
+  {
+    id: '13',
+    slug: 'bluetooth-tens-device',
+    title: 'Bluetooth TENS device',
+    description: 'Development of a compact TENS unit controlled via an embedded Bluetooth module.',
+    tags: ['Embedded Systems', 'PCB Design'],
+    github: 'https://github.com/clubberz',
+    image: 'https://placehold.co/1920x1080/27272a/white?text=AWAITING+PHOTOS',
+    year: '2024',
+    content: `## Project Overview
+Awaiting detailed project write-up and telemetry data.`
+  },
+  {
+    id: '14',
+    slug: 'surfboard',
+    title: 'Surfboard',
+    description: 'Custom shaped and glassed high-performance surfboard.',
+    tags: ['Composites', 'Fluid Dynamics', 'Fabrication'],
+    github: 'https://github.com/clubberz',
+    image: 'https://placehold.co/1920x1080/27272a/white?text=AWAITING+PHOTOS',
+    year: '2024',
+    content: `## Project Overview
+Awaiting detailed project write-up and telemetry data.`
   }
 ];
 

@@ -53,10 +53,10 @@ export const Photography: React.FC = () => {
       <div className="container-tight">
         <div className="mb-16">
           <h1 className="text-4xl md:text-6xl font-black tracking-tighter uppercase mb-4 leading-none">
-            Photograpghy
+            Lens.
           </h1>
           <p className="text-lg text-white/40 font-medium">
-            World through my eyes (or lens).
+            Visual documentation of the engineering process and track telemetry.
           </p>
         </div>
 

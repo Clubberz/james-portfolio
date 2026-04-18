@@ -5,6 +5,8 @@ import { ExperienceTimeline } from '../components/ExperienceTimeline';
 import { TechStack } from '../components/TechStack';
 import { PROJECTS, EXPERIENCES, SKILLS } from '../constants';
 import { motion } from 'motion/react';
+import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 
 export const Home: React.FC = () => {
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
@@ -16,16 +18,19 @@ export const Home: React.FC = () => {
     return Array.from(tags).sort();
   }, []);
 
-  // Sort projects so matched ones render first
-  const sortedProjects = useMemo(() => {
-    if (!selectedTag) return PROJECTS;
-    return [...PROJECTS].sort((a, b) => {
-      const aMatch = a.tags.includes(selectedTag);
-      const bMatch = b.tags.includes(selectedTag);
-      if (aMatch && !bMatch) return -1;
-      if (!aMatch && bMatch) return 1;
-      return 0;
-    });
+  // Sort projects so matched ones render first, then limit to 6
+  const displayedProjects = useMemo(() => {
+    let sorted = [...PROJECTS];
+    if (selectedTag) {
+      sorted.sort((a, b) => {
+        const aMatch = a.tags.includes(selectedTag);
+        const bMatch = b.tags.includes(selectedTag);
+        if (aMatch && !bMatch) return -1;
+        if (!aMatch && bMatch) return 1;
+        return 0;
+      });
+    }
+    return sorted.slice(0, 6);
   }, [selectedTag]);
 
   return (
@@ -63,7 +68,7 @@ export const Home: React.FC = () => {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-6 max-w-7xl mx-auto align-top">
-          {sortedProjects.map((project, i) => {
+          {displayedProjects.map((project, i) => {
             const isFaded = selectedTag && !project.tags.includes(selectedTag);
             return (
               <div key={project.id} className={`transition-opacity duration-700 ${isFaded ? 'opacity-30 grayscale saturate-0 pointer-events-none' : 'opacity-100'}`}>
@@ -71,6 +76,12 @@ export const Home: React.FC = () => {
               </div>
             );
           })}
+        </div>
+        
+        <div className="mt-16 text-center">
+          <Link to="/projects" className="inline-flex items-center gap-2 px-8 py-4 bg-white text-black font-black uppercase tracking-[0.2em] text-sm hover:bg-brand-accent hover:text-black transition-colors">
+            View All Projects <ArrowRight className="w-5 h-5" />
+          </Link>
         </div>
       </section>
 

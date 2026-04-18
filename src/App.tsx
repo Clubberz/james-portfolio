@@ -9,6 +9,7 @@ import { Navbar } from './components/Navbar';
 import { Home } from './pages/Home';
 import { ProjectDetail } from './pages/ProjectDetail';
 import { Photography } from './pages/Photography';
+import { AllProjects } from './pages/AllProjects';
 
 export default function App() {
   return (
@@ -27,6 +28,7 @@ export default function App() {
 
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/projects" element={<AllProjects />} />
           <Route path="/photography" element={<Photography />} />
           <Route path="/project/:slug" element={<ProjectDetail />} />
         </Routes>

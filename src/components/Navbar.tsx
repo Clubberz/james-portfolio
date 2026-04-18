@@ -48,7 +48,7 @@ export const Navbar = () => {
         </div>
         
         <div className="flex items-center gap-4 md:gap-8 text-[10px] font-bold uppercase tracking-[0.2em] text-white/50">
-          <a href="#projects" onClick={(e) => handleNavClick(e, '#projects')} className={`hover:text-white transition-colors cursor-pointer ${location.pathname === '/' ? '' : 'hidden md:inline'}`}>/WORK</a>
+          <Link to="/projects" className={`hover:text-white transition-colors cursor-pointer ${location.pathname === '/projects' ? 'text-brand-accent' : ''}`}>/WORK</Link>
           <a href="#experience" onClick={(e) => handleNavClick(e, '#experience')} className={`hover:text-white transition-colors cursor-pointer ${location.pathname === '/' ? '' : 'hidden md:inline'}`}>/ARCHIVE</a>
           <Link to="/photography" className={`hover:text-white transition-colors cursor-pointer ${location.pathname === '/photography' ? 'text-brand-accent' : ''}`}>/PHOTOGRAPHY</Link>
           <a href="#contact" onClick={(e) => handleNavClick(e, '#contact')} className={`hover:text-white transition-colors cursor-pointer underline decoration-white/20 underline-offset-4 ${location.pathname === '/' ? '' : 'hidden md:inline'}`}>/INIT_CONTACT</a>
