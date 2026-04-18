@@ -39,9 +39,8 @@ function DataStreams({ count = 100 }) {
       <bufferGeometry>
         <bufferAttribute
           attach="attributes-position"
+          args={[points.positions, 3]}
           count={count}
-          array={points.positions}
-          itemSize={3}
         />
       </bufferGeometry>
       <pointsMaterial size={0.02} color="#ffffff" transparent opacity={0.3} sizeAttenuation />
