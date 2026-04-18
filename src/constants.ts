@@ -8,6 +8,7 @@ export const PROJECTS: Project[] = [
     tags: ['Mechanical Design', 'FEA', 'Photogrammetry', 'Fabrication'],
     github: 'https://github.com/clubberz',
     image: 'https://picsum.photos/seed/bmw-k100/800/600',
+    video: '/showcase.mp4',
     year: '2024'
   },
   {

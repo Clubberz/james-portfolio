@@ -3,10 +3,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React from 'react';
+import React, { useRef } from 'react';
 import { motion } from 'motion/react';
 import { Project } from '../types';
-import { HoverImageSequence } from './HoverImageSequence';
 
 interface ProjectCardProps {
   project: Project;
@@ -14,6 +13,22 @@ interface ProjectCardProps {
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const handleMouseEnter = () => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(() => {
+        // Ignore play interruption errors when hovering quickly
+      });
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (videoRef.current) {
+      videoRef.current.pause();
+    }
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
@@ -21,10 +36,22 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
       transition={{ duration: 1, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
       viewport={{ once: true, margin: "-100px" }}
       className="group relative h-[70vh] w-full apple-card overflow-hidden"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      onTouchStart={handleMouseEnter}
+      onTouchEnd={handleMouseLeave}
     >
       <div className="absolute inset-0">
-        {project.id === '1' ? (
-          <HoverImageSequence basePath="/render/Frame" extension="png" />
+        {project.video ? (
+          <video 
+            ref={videoRef}
+            src={project.video}
+            poster={project.image}
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover transition-transform duration-[2s] ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-105"
+          />
         ) : (
           <img 
             src={project.image} 

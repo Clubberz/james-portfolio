@@ -6,6 +6,7 @@ export interface Project {
   link?: string;
   github?: string;
   image: string;
+  video?: string;
   year: string;
 }
 
