@@ -60,7 +60,7 @@ export const Hero = () => {
             </div>
             <div className="w-full h-full bg-zinc-800 relative overflow-hidden">
                <img 
-                 src="https://picsum.photos/seed/engineer-portrait/1000/1000?grayscale" 
+                 src= '/images/james.png'
                  alt="James Clubley"
                  className="w-full h-full object-cover filter contrast-125 brightness-75 mix-blend-luminosity hover:mix-blend-normal transition-all duration-700" 
                  referrerPolicy="no-referrer"
