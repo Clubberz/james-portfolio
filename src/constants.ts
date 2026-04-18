@@ -3,26 +3,12 @@ import { Project, Experience, Skill } from './types';
 export const PROJECTS: Project[] = [
   {
     id: '1',
-    slug: 'RR01 FSAE Car',
-    title: 'RR01 FSAE Car',
-    description: '',
+    slug: 'bmw-k100-restomod',
+    title: 'BMW K100 Restomod',
+    description: 'Custom frame and suspension development. Engineered a cantilever suspension to eliminate stock mount points, significantly improving vehicle dynamics through 3D photogrammetry and FEA.',
     tags: ['Mechanical Design', 'FEA', 'Photogrammetry', 'Fabrication'],
     github: 'https://github.com/clubberz',
-    video: '/videos/showcase.mp4',
-    year: '2024',
-    content: `## Project Overview
-
-The RR01 is the first car designed and built by the Rice Racing FSAE team. I led the design of the entire powertrain architecture.
-### Key Engineering Changes
-`
-  },
-  {
-    id: '2',
-    slug: 'BMW K100 Rebuild',
-    title: 'BMW K100 Rebuild',
-    description: '',
-    tags: ['ECU Tuning', 'Aerodynamics', 'Engine Building'],
-    github: 'https://github.com/clubberz',
+    image: '/images/bmw-k100.jpg',
     video: '/videos/bmw-k100.mp4',
     year: '2024',
     content: `## Project Overview
@@ -41,8 +27,7 @@ The frame was chopped and tig-welded. It's one thing to design parts, but seeing
 `
   },
   {
-    
-    id: '3',
+    id: '2',
     slug: '944-turbo-rebuild',
     title: '944 Turbo Race Rebuild',
     description: 'Complete powertrain modernization. Integrated a MegaSquirt ECU for modern fuel/ignition control and designed a high-downforce aerodynamic package including a custom splitter and rear wing.',
@@ -66,7 +51,7 @@ The mechanical grip wasn't going to be enough. I utilized **StarCCM+** to optimi
 `
   },
   {
-    id: '4',
+    id: '3',
     slug: 'liquid-fuel-engine',
     title: 'Liquid Fuel Engine',
     description: 'Critical component design for Rice Eclipse’s liquid fuel rocket project. Utilized extensive CFD, FEA, and thermal analysis to optimize thrust and system reliability.',
@@ -86,22 +71,53 @@ Working on a rocket teaches you that there are no small mistakes. Every calculat
 `
   },
   {
-    id: '5',
-    slug: 'solar-powered-race-car',
-    title: 'Solar Powered Race Car',
-    description: 'Retrofitted an ICE go-kart with an electric powertrain and solar array. Improved total system efficiency by ~20% through aggressive weight reduction and redesign.',
-    tags: ['EV Architecture', 'Solar', 'Efficiency'],
+    id: '4',
+    slug: 'fsae-ev-car',
+    title: 'FSAE EV Platform',
+    description: 'Founding powertrain lead for Rice Racing. Engineered the primary electric vehicle architecture, tractive system accumulation, and geometry for an entry-level FSAE prototype.',
+    tags: ['EV Architecture', 'FEA', 'High Voltage', 'Integration'],
     github: 'https://github.com/clubberz',
-    image: '/images/solar-car.jpg',
-    year: '2022',
-    content: `## EV Conversion & Solar Architecture
+    image: 'https://picsum.photos/seed/evcar/1920/1080?blur=4',
+    year: '2025',
+    relatedProjects: ['fsae-intake-plenum'],
+    content: `## The Primary Objective
 
-Took an old combustion-engine kart and turned it into an ultra-efficient electric prototype.
+Designing an entirely new electric competition vehicle for the university from scratch. We had to rethink our complete powertrain layout relative to traditional ICE parameters. 
+
+![Finite Element Analysis of the rear suspension subframe mounting bracket under 6G force.](https://picsum.photos/seed/fea/1200/800)
 
 ### Key Milestones
-* Designed and welded a custom aluminum rack for the solar array to keep weight absolute minimum while preventing flex.
-* Rewired the motor controller to accept input directly from the MPPT charge controller and battery array inline.
-* Achieved a continuous driving state under ideal sun where power generated matched power consumed at 15mph.
+* **Tractive System Accumulator**: Designed the battery pack casing and high-voltage segregation routing. 
+* **Suspension Geometry**: Engineered hard points to adapt to the higher unsprung mass. 
+* **Dynamic Validation**: We are actively utilizing SIMULINK blocks to predict lap times based on specific cell discharge rates.
+
+![Welding process on the primary chassis tubes.](https://picsum.photos/seed/welding/1200/800)
+
+The vehicle represents a huge leap forward in the team's engineering capacity.
+`
+  },
+  {
+    id: '5',
+    slug: 'fsae-intake-plenum',
+    title: 'FSAE Intake Plenum',
+    description: 'Developed an optimized, 3D printed intake restrictor and plenum using extensive CFD. Iterated geometry to meet standard flow restriction guidelines while maximizing volumetric efficiency.',
+    tags: ['CFD', 'Fluid Dynamics', 'Rapid Prototyping'],
+    github: 'https://github.com/clubberz',
+    image: 'https://picsum.photos/seed/plenum/1920/1080?blur=4',
+    year: '2025',
+    relatedProjects: ['fsae-ev-car'],
+    content: `## Restrictor Airflow Optimization
+
+FSAE rules strictly limit the engine's air intake via a 20mm restrictor. Our goal was to design a converging-diverging nozzle format that chokes flow as cleanly as possible.
+
+![Internal airflow streamlines mapped in StarCCM+ showing pressure drops at choked flow.](https://picsum.photos/seed/cfd/1200/800)
+
+### Design & Prototyping
+1. **CFD Analysis**: Re-meshed over 14 different geometries pushing the boundaries of the venturi angles.
+2. **Fabrication**: Executed the geometry using high-temp carbon-fiber infused nylon in our in-house 3D printing bay.
+3. **Dyno Validation**: Mounted the system onto our standalone engine rig and modified ignition timing via MegaSquirt to dial in the AFRs.
+
+The final iteration resulted in a +12% torque increase at our target 6000RPM range over the stock manifold.
 `
   }
 ];

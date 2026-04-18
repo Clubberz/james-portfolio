@@ -10,6 +10,7 @@ export interface Project {
   video?: string;
   year: string;
   content: string;
+  relatedProjects?: string[];
 }
 
 export interface Experience {

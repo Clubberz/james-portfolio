@@ -69,21 +69,21 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
       </div>
 
       <div className="absolute bottom-8 left-8 right-8 md:bottom-12 md:left-12 md:right-12 flex flex-col items-start text-white pointer-events-none z-10">
-        <span className="text-xs font-bold uppercase tracking-widest mb-3 opacity-80">
+        <span className="text-[10px] font-bold uppercase tracking-[0.2em] mb-3 opacity-80">
           Case Study 0{index + 1}
         </span>
-        <h3 className="text-3xl md:text-4xl font-bold mb-3 tracking-tight">
+        <h3 className="text-2xl md:text-3xl font-bold mb-3 tracking-tight uppercase">
           {project.title}
         </h3>
-        <p className="text-base md:text-lg max-w-xl opacity-90 leading-relaxed font-medium">
+        <p className="text-sm md:text-base max-w-xl opacity-90 leading-relaxed font-medium">
           {project.description}
         </p>
         
-        <div className="flex flex-wrap gap-2 mt-6">
+        <div className="flex flex-wrap gap-2 mt-5">
           {project.tags.map(tag => (
             <span 
               key={tag}
-              className="px-3 py-1.5 text-[10px] md:text-xs font-bold rounded-full bg-white/10 backdrop-blur-md border border-white/20"
+              className="px-2.5 py-1 text-[9px] uppercase tracking-widest font-bold rounded-full bg-white/10 backdrop-blur-md border border-white/20"
             >
               {tag}
             </span>

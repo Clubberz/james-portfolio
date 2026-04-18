@@ -17,13 +17,13 @@
 @layer base {
   :root {
     --primary: #ffffff;
-    --secondary: #17bdff;
+    --secondary: #8E9299;
     
     /* 🎨 VS CODE COLOR PICKER WORKS HERE! JUST CLICK THE BOX TO LEFT OF THE HEX CODE */
-    --accent: #144bff; 
+    --accent: #39ff14; 
     /* ------------------------------------------------------------- */
     
-    --bg-dark: #121212;
+    --bg-dark: #171717;
     --surface: #222222;
   }
 
