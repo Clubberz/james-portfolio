@@ -42,7 +42,7 @@ export const Hero = () => {
           </h1>
           
           <p className="text-lg md:text-xl text-white/70 font-medium leading-relaxed mb-8 backdrop-blur-sm">
-            A Mechanical & Aerospace Engineer at Rice University, spending my time at the intersection of high-fidelity analysis and hands-on fabrication.
+            A Mechanical Engineer specilizing in Aerospace @ Rice University with a passion for designing high-performance machines. I have a broad skillset, and can build just about anything. Check out my work below!
           </p>
           
           <div className="flex flex-wrap gap-8 items-center mt-10 pt-8 border-t border-white/10">
