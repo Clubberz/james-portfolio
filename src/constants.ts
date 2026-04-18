@@ -3,7 +3,7 @@ import { Project, Experience, Skill } from './types';
 export const PROJECTS: Project[] = [
   {
     id: '1',
-    title: 'BMW K100 Restomod',
+    title: 'RR01 FSAE Vehicle',
     description: '',
     tags: ['Mechanical Design', 'FEA', 'Photogrammetry', 'Fabrication'],
     github: 'https://github.com/clubberz',
