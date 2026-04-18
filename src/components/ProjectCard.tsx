@@ -6,6 +6,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { Project } from '../types';
+import { HoverImageSequence } from './HoverImageSequence';
 
 interface ProjectCardProps {
   project: Project;
@@ -19,19 +20,23 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 1, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
       viewport={{ once: true, margin: "-100px" }}
-      className="group relative h-[70vh] w-full apple-card"
+      className="group relative h-[70vh] w-full apple-card overflow-hidden"
     >
       <div className="absolute inset-0">
-        <img 
-          src={project.image} 
-          alt={project.title}
-          referrerPolicy="no-referrer"
-          className="w-full h-full object-cover transition-transform duration-[2s] ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-105"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/10 to-black/40" />
+        {project.id === '1' ? (
+          <HoverImageSequence basePath="/render/Frame" extension="png" />
+        ) : (
+          <img 
+            src={project.image} 
+            alt={project.title}
+            referrerPolicy="no-referrer"
+            className="w-full h-full object-cover transition-transform duration-[2s] ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-105"
+          />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-black/80 pointer-events-none" />
       </div>
 
-      <div className="absolute bottom-16 left-16 right-16 flex flex-col items-start text-white">
+      <div className="absolute bottom-16 left-16 right-16 flex flex-col items-start text-white pointer-events-none">
         <span className="text-sm font-bold uppercase tracking-widest mb-4 opacity-80">
           Case Study 0{index + 1}
         </span>

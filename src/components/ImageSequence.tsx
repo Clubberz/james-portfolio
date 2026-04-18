@@ -31,7 +31,6 @@ export const ImageSequence: React.FC<ImageSequenceProps> = ({
   useEffect(() => {
     let active = true;
     
-    // 2. Load Images in Batches
     const preLoadImages = async () => {
       // 1. Detect Padding
       const detectPadding = async () => {
@@ -41,8 +40,7 @@ export const ImageSequence: React.FC<ImageSequenceProps> = ({
             const img = new Image();
             img.onload = () => resolve(true);
             img.onerror = () => resolve(false);
-            const msg = `${basePath}${String(1).padStart(p, '0')}.${extension}`;
-            img.src = msg;
+            img.src = `${basePath}${String(1).padStart(p, '0')}.${extension}`;
           });
           if (success) return p;
         }
@@ -166,10 +164,9 @@ export const ImageSequence: React.FC<ImageSequenceProps> = ({
     window.addEventListener('resize', handleResize);
     const unsubscribe = currentIndex.on('change', render);
     
-    // Initial call: Ensure the first frame is painted
-    if (!isLoading && images.length > 0) {
-       handleResize();
-       render();
+    // Initial call
+    if (!isLoading) {
+      handleResize();
     }
 
     return () => {
@@ -184,7 +181,7 @@ export const ImageSequence: React.FC<ImageSequenceProps> = ({
         
         <canvas 
           ref={canvasRef} 
-          className="relative z-10 w-full h-full"
+          className="relative z-10 w-full h-full object-contain"
           style={{ filter: 'contrast(1.1) brightness(1.1)' }}
         />
 

@@ -9,7 +9,6 @@ import { Hero } from './components/Hero';
 import { ProjectCard } from './components/ProjectCard';
 import { ExperienceTimeline } from './components/ExperienceTimeline';
 import { TechStack } from './components/TechStack';
-import { ImageSequence } from './components/ImageSequence';
 import { PROJECTS, EXPERIENCES, SKILLS } from './constants';
 import { motion } from 'motion/react';
 
@@ -22,22 +21,18 @@ export default function App() {
       <main>
         <Hero />
 
-        {/* TECHNICAL SHOWCASE / ROTATING MODEL */}
-        <section className="relative z-10 w-full mb-32">
-           <div className="container-tight pt-12 pb-6 flex justify-between items-end border-b border-white/5">
-              <div>
-                <span className="mono-label mb-2 text-brand-secondary">SHOWCASE_01</span>
-                <h2 className="text-3xl font-black tracking-tighter text-white uppercase italic">BMW_K100_RESTOMOD</h2>
-              </div>
-              <div className="text-right hidden md:block">
-                 <p className="font-mono text-[9px] text-white/20 uppercase tracking-widest">SOLIDWORKS_RENDER // 18_FRAME_SEQUENCE</p>
-              </div>
-           </div>
-
-           <ImageSequence 
-             basePath="/render/Frame" 
-             extension="png" 
-           />
+        {/* PROJECTS - THE MEAT OF THE PORTFOLIO */}
+        <section id="projects" className="py-24 bg-zinc-900/20 backdrop-blur-sm border-y border-white/5 shadow-2col">
+          <div className="container-tight mb-20 text-center md:text-left">
+            <h2 className="text-5xl md:text-7xl font-black tracking-tighter uppercase mb-4">Selected Projects.</h2>
+            <p className="text-xl text-white/40 font-medium">From custom vehicle restomods to aerospace-grade simulations.</p>
+          </div>
+          
+          <div className="flex flex-col gap-12 px-6 max-w-7xl mx-auto">
+            {PROJECTS.map((project, i) => (
+              <ProjectCard key={project.id} project={project} index={i} />
+            ))}
+          </div>
         </section>
 
         {/* TECH STACK - DIRECT VISIBILITY */}
@@ -50,20 +45,6 @@ export default function App() {
               </p>
             </div>
             <TechStack skills={SKILLS} />
-          </div>
-        </section>
-
-        {/* PROJECTS - THE MEAT OF THE PORTFOLIO */}
-        <section id="projects" className="py-32 bg-zinc-900/20 backdrop-blur-sm border-y border-white/5">
-          <div className="container-tight mb-20 text-center md:text-left">
-            <h2 className="text-5xl md:text-7xl font-black tracking-tighter uppercase mb-4">Selected Projects.</h2>
-            <p className="text-xl text-white/40 font-medium">From custom vehicle restomods to aerospace-grade simulations.</p>
-          </div>
-          
-          <div className="flex flex-col gap-12 px-6 max-w-7xl mx-auto">
-            {PROJECTS.map((project, i) => (
-              <ProjectCard key={project.id} project={project} index={i} />
-            ))}
           </div>
         </section>
 
