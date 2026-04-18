@@ -19,7 +19,7 @@ export const Hero = () => {
         >
           <div className="inline-flex items-center gap-2 mb-6 px-3 py-1 border border-white/10 rounded-full bg-white/5">
             <div className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-            <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-white/50">SYSTEM_ONLINE // PROTOCOL_V1.1</span>
+            <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-white/50">SYSTEM_ONLINE // INITIATING PREFLIGHT CHECKS</span>
           </div>
           
           <h1 className="text-5xl md:text-7xl font-black tracking-tighter text-white mb-6 uppercase">
@@ -28,7 +28,7 @@ export const Hero = () => {
           </h1>
           
           <p className="text-xl md:text-2xl text-white/60 font-medium max-w-xl leading-relaxed mb-10">
-            A Mechanical & Aerospace Engineer at Rice University, spending my time at the intersection of high-fidelity analysis and hands-on fabrication.
+            I'm a Mechanical Engineer at Rice University with a passion for motorsports and aerospace. I specialize in high-performance vehicle design, CFD/FEA simulation, and rapid prototyping. Check out my projects below. Scroll!
           </p>
           
           <div className="flex flex-wrap gap-8 items-center mt-12 pt-10 border-t border-white/5">
@@ -36,7 +36,7 @@ export const Hero = () => {
               href="mailto:jamestjclubley@gmail.com"
               className="px-8 py-4 bg-white text-black font-bold text-sm uppercase tracking-widest hover:bg-zinc-200 transition-all"
             >
-              Get In Touch
+              Click here to find me
             </a>
             <a 
               href="#projects"

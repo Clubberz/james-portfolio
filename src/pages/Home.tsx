@@ -14,8 +14,8 @@ export const Home: React.FC = () => {
       {/* PROJECTS - THE MEAT OF THE PORTFOLIO */}
       <section id="projects" className="py-24 bg-zinc-900/20 backdrop-blur-sm border-y border-white/5 shadow-2col">
         <div className="container-tight mb-20 text-center md:text-left">
-          <h2 className="text-5xl md:text-7xl font-black tracking-tighter uppercase mb-4">Selected Projects.</h2>
-          <p className="text-xl text-white/40 font-medium">From custom vehicle restomods to aerospace-grade simulations.</p>
+          <h2 className="text-5xl md:text-7xl font-black tracking-tighter uppercase mb-4">Cool stuff.</h2>
+          <p className="text-xl text-white/40 font-medium">Racecars, rockets, and everything in between.</p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-6 max-w-7xl mx-auto">
