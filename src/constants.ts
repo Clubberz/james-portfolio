@@ -104,32 +104,6 @@ Working on a rocket teaches you that there are no small mistakes. Every calculat
 `
   },
   {
-    id: '4',
-    slug: 'fsae-ev-car',
-    title: 'FSAE EV Platform',
-    description: 'Founding powertrain lead for Rice Racing. Engineered the primary electric vehicle architecture, tractive system accumulation, and geometry for an entry-level FSAE prototype.',
-    tags: ['EV Architecture', 'FEA', 'High Voltage', 'Integration'],
-    github: 'https://github.com/clubberz',
-    image: 'https://picsum.photos/seed/evcar/1920/1080?blur=4',
-    year: '2025',
-    relatedProjects: ['fsae-intake-plenum'],
-    content: `## The Primary Objective
-
-Designing an entirely new electric competition vehicle for the university from scratch. We had to rethink our complete powertrain layout relative to traditional ICE parameters. 
-
-![Finite Element Analysis of the rear suspension subframe mounting bracket under 6G force.](https://picsum.photos/seed/fea/1200/800)
-
-### Key Milestones
-* **Tractive System Accumulator**: Designed the battery pack casing and high-voltage segregation routing. 
-* **Suspension Geometry**: Engineered hard points to adapt to the higher unsprung mass. 
-* **Dynamic Validation**: We are actively utilizing SIMULINK blocks to predict lap times based on specific cell discharge rates.
-
-![Welding process on the primary chassis tubes.](https://picsum.photos/seed/welding/1200/800)
-
-The vehicle represents a huge leap forward in the team's engineering capacity.
-`
-  },
-  {
     id: '5',
     slug: 'fsae-intake-plenum',
     title: 'FSAE Intake Plenum',
