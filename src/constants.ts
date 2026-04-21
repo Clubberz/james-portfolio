@@ -33,10 +33,15 @@ Building a race car in CAD is one thing. Putting it on the asphalt and wringing 
     image: '/images/bmwk100.png',
     video: '/videos/bmw-k100.mp4',
     gallery: [
-      '/images/bmwk100.png',
-      'https://picsum.photos/seed/welding3/1920/1080',
-      'https://picsum.photos/seed/cadengine/1920/1080',
-      'https://picsum.photos/seed/motorcycleparts/1920/1080'
+      '/projects/bmw-k100-restomod/Screenshot 2025-10-12 133636.png',
+      '/projects/bmw-k100-restomod/Screenshot 2025-10-12 133645.png',
+      '/projects/bmw-k100-restomod/Screenshot 2025-10-12 134611.png',
+      '/projects/bmw-k100-restomod/Screenshot 2025-10-12 135224.png',
+      '/projects/bmw-k100-restomod/Screenshot 2025-10-12 140212.png',
+      '/projects/bmw-k100-restomod/Screenshot 2025-10-12 140656.png',
+      '/projects/bmw-k100-restomod/Screenshot 2025-10-12 144016.png',
+      '/projects/bmw-k100-restomod/Screenshot 2025-10-12 170800.png',
+      '/projects/bmw-k100-restomod/Screenshot 2025-10-12 172236.png'
     ],
     year: '2024',
     content: `## Project Overview

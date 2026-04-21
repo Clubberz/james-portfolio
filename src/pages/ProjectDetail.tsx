@@ -8,35 +8,8 @@ import { PROJECTS } from '../constants';
 export const ProjectDetail: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [dynamicGallery, setDynamicGallery] = useState<string[]>([]);
-  const [loadingGallery, setLoadingGallery] = useState(true);
   
-  // Fetch dynamic gallery from physical folders
   useEffect(() => {
-    if (!slug) return;
-    
-    // reset
-    setCurrentImageIndex(0);
-    setLoadingGallery(true);
-    setDynamicGallery([]);
-    
-    fetch(`/api/project-images?slug=${slug}&t=${Date.now()}`)
-      .then(res => {
-         if (!res.ok) throw new Error("HTTP error " + res.status);
-         return res.json();
-      })
-      .then(files => {
-        if (Array.isArray(files) && files.length > 0) {
-          setDynamicGallery(files);
-        }
-      })
-      .catch(err => {
-        console.error("Failed to fetch custom project photos: ", err);
-      })
-      .finally(() => {
-        setLoadingGallery(false);
-      });
-
     window.scrollTo(0, 0);
   }, [slug]);
 
@@ -50,9 +23,10 @@ export const ProjectDetail: React.FC = () => {
     ?.map(relatedSlug => PROJECTS.find(p => p.slug === relatedSlug))
     .filter((p): p is typeof PROJECTS[0] => p !== undefined);
 
-  // Combine fetched dynamic gallery with static gallery if you like, or just prefer dynamic
-  // preferring dynamic folder images over hardcoded ones in constants
-  const activeGallery = dynamicGallery.length > 0 ? dynamicGallery : (project.gallery || []);
+  // Use statically defined gallery, falling back to a single image if no gallery array
+  const activeGallery = project.gallery && project.gallery.length > 0
+    ? project.gallery
+    : (project.image ? [project.image] : []);
 
   const nextImage = () => {
     if (activeGallery.length > 0) {
@@ -106,12 +80,7 @@ export const ProjectDetail: React.FC = () => {
 
         {/* Media Block (Carousel or Single Content) */}
         <div className="w-full aspect-video bg-zinc-900 overflow-hidden rounded-[2rem] border border-white/5 mb-16 relative group">
-          {loadingGallery ? (
-            <div className="w-full h-full flex flex-col items-center justify-center relative z-20">
-              <ImageIcon className="w-10 h-10 text-white/20 mb-4 animate-pulse" />
-              <span className="font-mono text-xs uppercase tracking-widest text-white/40">Loading Media...</span>
-            </div>
-          ) : activeGallery.length > 0 ? (
+          {activeGallery.length > 0 ? (
              <div className="w-full h-full relative flex items-center justify-center">
                <img 
                  key={currentImageIndex} // force re-render for clean transition

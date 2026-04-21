@@ -32,33 +32,6 @@ export default defineConfig(({mode}) => {
               res.end(JSON.stringify([]));
             }
           });
-
-          server.middlewares.use('/api/project-images', (req, res, next) => {
-            const urlObj = new URL(req.url || '/', 'http://localhost');
-            const slug = urlObj.searchParams.get('slug');
-
-            if (!slug) {
-                res.setHeader('Content-Type', 'application/json');
-                res.end(JSON.stringify({ error: "Missing slug parameter" }));
-                return;
-            }
-
-            const photoDir = path.join(__dirname, 'public/projects', slug);
-            try {
-              if (!fs.existsSync(photoDir)) {
-                res.setHeader('Content-Type', 'application/json');
-                res.end(JSON.stringify([]));
-                return;
-              }
-              const files = fs.readdirSync(photoDir);
-              const validFiles = files.filter(f => /\.(jpg|jpeg|png|gif|webp)$/i.test(f)).map(f => `/projects/${slug}/${f}`);
-              res.setHeader('Content-Type', 'application/json');
-              res.end(JSON.stringify(validFiles));
-            } catch (err) {
-              res.setHeader('Content-Type', 'application/json');
-              res.end(JSON.stringify([]));
-            }
-          });
         }
       }
     ],
