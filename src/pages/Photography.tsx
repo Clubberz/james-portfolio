@@ -2,23 +2,37 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, ChevronLeft, ChevronRight, UploadCloud } from 'lucide-react';
 
-// Auto-discover all images in the public/photography directory using Vite's glob import
-// Note: Vite automatically resolves this statically at build time/HMR time.
-const imageModules = import.meta.glob('/public/photography/*.{jpg,jpeg,png,gif,webp,JPG,JPEG,PNG}', { eager: true });
-
-// Convert the Vite module paths ('/public/photography/IMG_01.jpg') to browser-accessible URLs ('/photography/IMG_01.jpg')
-const PHOTOS = Object.keys(imageModules).map((filePath, index) => {
-  const url = filePath.replace('/public', '');
-  const filename = filePath.split('/').pop() || `Image_${index}`;
-  return { id: index + 1, src: url, filename };
-});
+interface PhotoInfo {
+  id: number;
+  src: string;
+  filename: string;
+}
 
 export const Photography: React.FC = () => {
   const [selectedPhoto, setSelectedPhoto] = useState<number | null>(null);
+  const [photos, setPhotos] = useState<PhotoInfo[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  // Scroll to top on mount
   useEffect(() => {
+    // Scroll to top on mount
     window.scrollTo(0, 0);
+
+    // Fetch photos from the local dev server plugin
+    fetch('/api/photos')
+      .then(res => res.json())
+      .then(files => {
+        const loadedPhotos = files.map((filename: string, index: number) => ({
+          id: index + 1,
+          src: `/photography/${filename}`,
+          filename
+        }));
+        setPhotos(loadedPhotos);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error("Failed to load photos:", err);
+        setLoading(false);
+      });
   }, []);
 
   // Handle keyboard navigation for modal
@@ -31,14 +45,14 @@ export const Photography: React.FC = () => {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedPhoto]);
+  }, [selectedPhoto, photos]);
 
   const navigateModal = (direction: number) => {
     setSelectedPhoto((prev) => {
       if (prev === null) return null;
       const nextIndex = prev + direction;
-      if (nextIndex < 0) return PHOTOS.length - 1;
-      if (nextIndex >= PHOTOS.length) return 0;
+      if (nextIndex < 0) return photos.length - 1;
+      if (nextIndex >= photos.length) return 0;
       return nextIndex;
     });
   };
@@ -60,7 +74,11 @@ export const Photography: React.FC = () => {
           </p>
         </div>
 
-        {PHOTOS.length === 0 ? (
+        {loading ? (
+             <div className="w-full flex justify-center py-32 border border-white/10 border-dashed rounded-3xl bg-white/5">
+               <div className="text-center font-mono opacity-50 uppercase tracking-widest text-xs">Loading Imagery...</div>
+             </div>
+        ) : photos.length === 0 ? (
           <div className="w-full flex justify-center py-32 border border-white/10 border-dashed rounded-3xl bg-white/5">
             <div className="text-center max-w-sm">
               <UploadCloud className="w-12 h-12 mx-auto text-white/20 mb-6" />
@@ -72,7 +90,7 @@ export const Photography: React.FC = () => {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[250px]">
-            {PHOTOS.map((photo, index) => {
+            {photos.map((photo, index) => {
               // Pseudo-randomly make every 4th photo span 2 rows to keep the layout dynamic
               const isTall = index % 4 === 1;
               
@@ -103,7 +121,7 @@ export const Photography: React.FC = () => {
 
       {/* Lightbox Modal */}
       <AnimatePresence>
-        {selectedPhoto !== null && (
+        {selectedPhoto !== null && photos[selectedPhoto] && (
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -113,7 +131,7 @@ export const Photography: React.FC = () => {
             {/* Modal Header */}
             <div className="absolute top-0 w-full p-6 flex justify-between items-center z-10 text-white/50">
               <span className="font-mono text-[10px] uppercase tracking-widest">
-                {PHOTOS[selectedPhoto].filename.toUpperCase()} // {selectedPhoto + 1} OF {PHOTOS.length}
+                {photos[selectedPhoto].filename.toUpperCase()} // {selectedPhoto + 1} OF {photos.length}
               </span>
               <button 
                 onClick={() => setSelectedPhoto(null)} 
@@ -137,8 +155,8 @@ export const Photography: React.FC = () => {
                  initial={{ opacity: 0, scale: 0.95 }}
                  animate={{ opacity: 1, scale: 1 }}
                  transition={{ duration: 0.3 }}
-                 src={PHOTOS[selectedPhoto].src}
-                 alt={PHOTOS[selectedPhoto].filename}
+                 src={photos[selectedPhoto].src}
+                 alt={photos[selectedPhoto].filename}
                  className="max-h-full max-w-full object-contain shadow-2xl"
                  referrerPolicy="no-referrer"
                />

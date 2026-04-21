@@ -20,8 +20,11 @@ export const ProjectDetail: React.FC = () => {
     setLoadingGallery(true);
     setDynamicGallery([]);
     
-    fetch(`/api/project-images?slug=${slug}`)
-      .then(res => res.json())
+    fetch(`/api/project-images?slug=${slug}&t=${Date.now()}`)
+      .then(res => {
+         if (!res.ok) throw new Error("HTTP error " + res.status);
+         return res.json();
+      })
       .then(files => {
         if (Array.isArray(files) && files.length > 0) {
           setDynamicGallery(files);

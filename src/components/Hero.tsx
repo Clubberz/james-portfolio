@@ -3,11 +3,13 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import React from 'react';
 import { motion } from 'motion/react';
 
 export const Hero = () => {
   return (
     <section className="relative min-h-[85vh] flex flex-col items-center justify-center pt-24 pb-12 px-6 overflow-hidden">
+      
       {/* Background Banner Image */}
       <div className="absolute inset-0 z-0 select-none pointer-events-none">
         <img 
@@ -22,11 +24,11 @@ export const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-[#171717] via-[#171717]/40 to-transparent" />
       </div>
 
-      <div className="container-tight w-full relative z-10 text-left flex justify-start">
+      <div className="container-tight w-full relative z-10 flex flex-col lg:flex-row items-center lg:items-center justify-between gap-12">
         
         {/* Intro Text */}
         <motion.div 
-          className="max-w-2xl"
+          className="max-w-2xl text-left"
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
@@ -48,7 +50,7 @@ export const Hero = () => {
           <div className="flex flex-wrap gap-8 items-center mt-10 pt-8 border-t border-white/10">
             <a 
               href="mailto:jamestjclubley@gmail.com"
-              className="px-6 py-3 bg-white text-black font-bold text-sm uppercase tracking-widest hover:bg-zinc-200 transition-all"
+              className="px-6 py-3 bg-white text-black font-bold text-sm uppercase tracking-widest hover:bg-zinc-200 transition-all font-sans"
             >
               Get In Touch
             </a>
@@ -59,6 +61,22 @@ export const Hero = () => {
               / VIEW_ARCHIVE
             </a>
           </div>
+        </motion.div>
+
+        {/* Profile Image */}
+        <motion.div 
+          className="relative w-72 h-72 lg:w-96 lg:h-96 rounded-[3rem] overflow-hidden border-2 border-white/10 flex-shrink-0 group bg-zinc-900 shadow-2xl"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          {/* Base Image: Headshot */}
+          <img 
+            src="/images/james.png" 
+            alt="James Headshot"
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+            referrerPolicy="no-referrer"
+          />
         </motion.div>
       </div>
     </section>

@@ -34,10 +34,8 @@ export default defineConfig(({mode}) => {
           });
 
           server.middlewares.use('/api/project-images', (req, res, next) => {
-            if (!req.originalUrl) return next();
-            
-            const match = req.originalUrl.match(/[?&]slug=([^&]+)/);
-            const slug = match ? decodeURIComponent(match[1]) : null;
+            const urlObj = new URL(req.url || '/', 'http://localhost');
+            const slug = urlObj.searchParams.get('slug');
 
             if (!slug) {
                 res.setHeader('Content-Type', 'application/json');

@@ -30,9 +30,9 @@ export const AllProjects: React.FC = () => {
 
   return (
     <main className="min-h-screen pt-40 pb-24 relative z-10 bg-black">
-      <div className="container-tight">
+      <div className="max-w-[1600px] mx-auto px-6 md:px-12">
         
-        <div className="mb-16">
+        <div className="mb-16 max-w-7xl mx-auto">
           <Link to="/" className="inline-flex items-center gap-2 text-white/40 hover:text-white transition-colors text-xs font-mono uppercase tracking-widest mb-8">
             <ArrowLeft className="w-4 h-4" /> Return to Base
           </Link>
@@ -68,7 +68,7 @@ export const AllProjects: React.FC = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 align-top">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 align-top">
           <AnimatePresence mode="popLayout">
             {sortedProjects.map((project, i) => {
               const isFaded = selectedTag && !project.tags.includes(selectedTag);
