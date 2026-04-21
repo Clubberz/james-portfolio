@@ -14,7 +14,8 @@ export default defineConfig(({mode}) => {
       {
         name: 'photo-api',
         configureServer(server) {
-          server.middlewares.use('/api/photos', (req, res) => {
+          server.middlewares.use('/api/photos', (req, res, next) => {
+            if (req.originalUrl && req.originalUrl.split('?')[0] !== '/api/photos') return next();
             const photoDir = path.join(__dirname, 'public/photography');
             try {
               if (!fs.existsSync(photoDir)) {
@@ -24,6 +25,35 @@ export default defineConfig(({mode}) => {
               }
               const files = fs.readdirSync(photoDir);
               const validFiles = files.filter(f => /\.(jpg|jpeg|png|gif|webp)$/i.test(f));
+              res.setHeader('Content-Type', 'application/json');
+              res.end(JSON.stringify(validFiles));
+            } catch (err) {
+              res.setHeader('Content-Type', 'application/json');
+              res.end(JSON.stringify([]));
+            }
+          });
+
+          server.middlewares.use('/api/project-images', (req, res, next) => {
+            if (!req.originalUrl) return next();
+            
+            const match = req.originalUrl.match(/[?&]slug=([^&]+)/);
+            const slug = match ? decodeURIComponent(match[1]) : null;
+
+            if (!slug) {
+                res.setHeader('Content-Type', 'application/json');
+                res.end(JSON.stringify({ error: "Missing slug parameter" }));
+                return;
+            }
+
+            const photoDir = path.join(__dirname, 'public/projects', slug);
+            try {
+              if (!fs.existsSync(photoDir)) {
+                res.setHeader('Content-Type', 'application/json');
+                res.end(JSON.stringify([]));
+                return;
+              }
+              const files = fs.readdirSync(photoDir);
+              const validFiles = files.filter(f => /\.(jpg|jpeg|png|gif|webp)$/i.test(f)).map(f => `/projects/${slug}/${f}`);
               res.setHeader('Content-Type', 'application/json');
               res.end(JSON.stringify(validFiles));
             } catch (err) {
