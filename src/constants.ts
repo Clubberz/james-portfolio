@@ -30,7 +30,7 @@ Building a race car in CAD is one thing. Putting it on the asphalt and wringing 
     description: 'Custom frame and suspension development. Engineered a cantilever suspension to eliminate stock mount points, significantly improving vehicle dynamics through 3D photogrammetry and FEA.',
     tags: ['Mechanical Design', 'FEA', 'Photogrammetry', 'Fabrication'],
     github: 'https://github.com/clubberz',
-    image: '/images/bmw-k100-restomod/bmwk100scanblender.png',
+    image: '/images/bmw-k100-restomod/k100scanblender.png',
     video: '/videos/bmw-k100.mp4',
     gallery: [
       '/projects/bmw-k100-restomod/Screenshot 2025-10-12 133636.png',
