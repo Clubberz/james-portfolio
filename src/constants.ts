@@ -12,6 +12,7 @@ export const PROJECTS: Project[] = [
     video: '/videos/showcase.mp4',
     year: '2025',
     gallery: [
+      '/projects/rr01-fsae-car/RR01.png',
       '/projects/rr01-fsae-car/FSAEcad1.png',
       '/projects/rr01-fsae-car/FSAEpowertrainkeepout.png',
     ],
