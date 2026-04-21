@@ -1,18 +1,40 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Navigate, Link } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { ArrowLeft, ExternalLink, Github, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Github, ChevronLeft, ChevronRight, ImageIcon } from 'lucide-react';
 import Markdown from 'react-markdown';
 import { PROJECTS } from '../constants';
 
 export const ProjectDetail: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [dynamicGallery, setDynamicGallery] = useState<string[]>([]);
+  const [loadingGallery, setLoadingGallery] = useState(true);
   
-  // Scroll to top when page changes
+  // Fetch dynamic gallery from physical folders
   useEffect(() => {
-    window.scrollTo(0, 0);
+    if (!slug) return;
+    
+    // reset
     setCurrentImageIndex(0);
+    setLoadingGallery(true);
+    setDynamicGallery([]);
+    
+    fetch(`/api/project-images?slug=${slug}`)
+      .then(res => res.json())
+      .then(files => {
+        if (Array.isArray(files) && files.length > 0) {
+          setDynamicGallery(files);
+        }
+      })
+      .catch(err => {
+        console.error("Failed to fetch custom project photos: ", err);
+      })
+      .finally(() => {
+        setLoadingGallery(false);
+      });
+
+    window.scrollTo(0, 0);
   }, [slug]);
 
   const project = PROJECTS.find(p => p.slug === slug);
@@ -25,15 +47,19 @@ export const ProjectDetail: React.FC = () => {
     ?.map(relatedSlug => PROJECTS.find(p => p.slug === relatedSlug))
     .filter((p): p is typeof PROJECTS[0] => p !== undefined);
 
+  // Combine fetched dynamic gallery with static gallery if you like, or just prefer dynamic
+  // preferring dynamic folder images over hardcoded ones in constants
+  const activeGallery = dynamicGallery.length > 0 ? dynamicGallery : (project.gallery || []);
+
   const nextImage = () => {
-    if (project.gallery) {
-      setCurrentImageIndex((prev) => (prev + 1) % project.gallery!.length);
+    if (activeGallery.length > 0) {
+      setCurrentImageIndex((prev) => (prev + 1) % activeGallery.length);
     }
   };
 
   const prevImage = () => {
-    if (project.gallery) {
-      setCurrentImageIndex((prev) => (prev - 1 + project.gallery!.length) % project.gallery!.length);
+    if (activeGallery.length > 0) {
+      setCurrentImageIndex((prev) => (prev - 1 + activeGallery.length) % activeGallery.length);
     }
   };
 
@@ -77,45 +103,54 @@ export const ProjectDetail: React.FC = () => {
 
         {/* Media Block (Carousel or Single Content) */}
         <div className="w-full aspect-video bg-zinc-900 overflow-hidden rounded-[2rem] border border-white/5 mb-16 relative group">
-          {project.gallery && project.gallery.length > 0 ? (
+          {loadingGallery ? (
+            <div className="w-full h-full flex flex-col items-center justify-center relative z-20">
+              <ImageIcon className="w-10 h-10 text-white/20 mb-4 animate-pulse" />
+              <span className="font-mono text-xs uppercase tracking-widest text-white/40">Loading Media...</span>
+            </div>
+          ) : activeGallery.length > 0 ? (
              <div className="w-full h-full relative flex items-center justify-center">
                <img 
                  key={currentImageIndex} // force re-render for clean transition
-                 src={project.gallery[currentImageIndex]} 
+                 src={activeGallery[currentImageIndex]} 
                  alt={`${project.title} gallery frame ${currentImageIndex + 1}`}
                  className="w-full h-full object-cover animate-in fade-in duration-500"
                  referrerPolicy="no-referrer"
                />
                
                {/* Controls */}
-               <div className="absolute inset-x-4 flex justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <button 
-                    onClick={prevImage} 
-                    className="p-3 bg-black/60 backdrop-blur-md rounded-full text-white hover:bg-black/90 hover:scale-110 transition-all border border-white/10"
-                    aria-label="Previous image"
-                  >
-                    <ChevronLeft className="w-6 h-6" />
-                  </button>
-                  <button 
-                    onClick={nextImage} 
-                    className="p-3 bg-black/60 backdrop-blur-md rounded-full text-white hover:bg-black/90 hover:scale-110 transition-all border border-white/10"
-                    aria-label="Next image"
-                  >
-                    <ChevronRight className="w-6 h-6" />
-                  </button>
-               </div>
+               {activeGallery.length > 1 && (
+                 <div className="absolute inset-x-4 flex justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <button 
+                      onClick={prevImage} 
+                      className="p-3 bg-black/60 backdrop-blur-md rounded-full text-white hover:bg-black/90 hover:scale-110 transition-all border border-white/10"
+                      aria-label="Previous image"
+                    >
+                      <ChevronLeft className="w-6 h-6" />
+                    </button>
+                    <button 
+                      onClick={nextImage} 
+                      className="p-3 bg-black/60 backdrop-blur-md rounded-full text-white hover:bg-black/90 hover:scale-110 transition-all border border-white/10"
+                      aria-label="Next image"
+                    >
+                      <ChevronRight className="w-6 h-6" />
+                    </button>
+                 </div>
+               )}
                
                {/* Indicators */}
-               <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-3">
-                  {project.gallery.map((_, i) => (
-                     <button 
-                       key={i} 
-                       onClick={() => setCurrentImageIndex(i)} 
-                       className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${i === currentImageIndex ? 'bg-white scale-125' : 'bg-white/30 hover:bg-white/50'}`} 
-                       aria-label={`Go to slide ${i + 1}`}
-                     />
-                  ))}
-               </div>
+               {activeGallery.length > 1 && (
+                 <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-3">
+                    {activeGallery.map((_, i) => (
+                       <button 
+                         key={i} 
+                         onClick={() => setCurrentImageIndex(i)} 
+                         className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${i === currentImageIndex ? 'bg-white scale-125' : 'bg-white/30 hover:bg-white/50'}`} 
+                         aria-label={`Go to slide ${i + 1}`}
+                       />
+                    ))}
+                 </div>
+               )}
             </div>
           ) : project.video ? (
             <video 
@@ -134,7 +169,10 @@ export const ProjectDetail: React.FC = () => {
               className="w-full h-full object-cover"
             />
           ) : (
-            <div className="w-full h-full bg-zinc-800" />
+            <div className="w-full h-full flex flex-col items-center justify-center bg-zinc-800">
+               <ImageIcon className="w-12 h-12 text-white/10 mb-4" />
+               <span className="font-mono text-xs uppercase tracking-widest text-white/30">No Media Available</span>
+            </div>
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
         </div>
