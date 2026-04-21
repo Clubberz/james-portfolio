@@ -11,6 +11,10 @@ export const PROJECTS: Project[] = [
     image: '/images/RR01.png',
     video: '/videos/showcase.mp4',
     year: '2025',
+    gallery: [
+      '/projects/rr01-fsae-car/FSAEcad1.png',
+      '/projects/rr01-fsae-car/FSAEpowertrainkeepout.png',
+    ],
     relatedProjects: ['fsae-ev-car', 'fsae-intake-plenum'],
     content: `## The Flagship Platform: RR01
 
