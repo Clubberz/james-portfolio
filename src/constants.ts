@@ -49,7 +49,7 @@ Building a race car in CAD is one thing. Putting it on the asphalt and wringing 
 The objective was to take a standard BMW K100 and completely rebuild the suspension architecture to strip weight and lower the center of gravity. 
 
 ### Key Engineering Changes
-* **Cantilever Suspension**: Redesigned the geometry completely from the ground up using **Siemens NX**.
+* **Cantilever Suspension**: Redesigned the geometry completely from the ground up using **Solidworks**.
 * **Photogrammetry Interface**: Used 3D scanning to perfectly map the original engine casing and frame mounts to trace attachment points within a 0.5mm tolerance.
 * **FEA Analysis**: Simulated 5G bump loads on the suspension linkages in software before CNC machining the structural links.
 
